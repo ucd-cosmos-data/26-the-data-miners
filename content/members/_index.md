@@ -72,6 +72,7 @@ title: "Members"
       <li>National Taekwondo Medalist</li>
     </ul>
   </div>
+</div>
 
 
 ### Anirudh Nanniyur
