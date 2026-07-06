@@ -14,7 +14,7 @@ title: "Members"
 }
 </style>
 
-### Snoopy
+### Ridhima Kapoor
 
 <div class="member-block" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
 
@@ -24,12 +24,12 @@ title: "Members"
 
   <div style="flex: 1; text-align: left;">
     <p style="margin: 0; padding-top: 0.5em;">
-      Snoopy is a lovable beagle and one of the most iconic characters from the Peanuts comic strip, created by Charles M. Schulz. 
+      Ridhima Kapoor is a rising senior at John F. Kennedy High School. In her  free time, she enjoys 
     </p>
     <ul style="margin: 0; padding-left: 20px;">
-      <li>Loyal companion of Charlie Brown</li>
-      <li>Loves root beer and pizza</li>
-      <li>Sleeps on top of his doghouse, not inside it</li>
+      <li>Reading and dancing</li>
+      <li>Hanging out with her dog</li>
+      <li>Trying out new restaurants with her friends</li>
     </ul>
   </div>
 
