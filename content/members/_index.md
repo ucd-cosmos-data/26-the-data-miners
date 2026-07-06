@@ -94,5 +94,3 @@ title: "Members"
   </div>
 
 </div>
-
-</div>
