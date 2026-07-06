@@ -35,7 +35,7 @@ title: "Members"
 
 </div>
 
-### Woodstock
+### Yuchen Wang
 
 <div class="member-block" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
 
@@ -45,10 +45,10 @@ title: "Members"
 
   <div style="flex: 1; text-align: left;">
     <p style="margin: 0; padding-top: 0.5em;">
-      Woodstock is ...
+      Yuchen Wang is a rising senior at Westview High School in San Diego California.  
     </p>
     <ul style="margin: 0; padding-left: 20px;">
-      <li>AAA</li>
+      <li>Competitive Swimming</li>
       <li>BBB</li>
       <li>CCC</li>
     </ul>
