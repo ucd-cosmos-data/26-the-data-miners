@@ -73,7 +73,8 @@ title: "Members"
     </ul>
   </div>
 
-  ### Anirudh Nanniyur
+
+### Anirudh Nanniyur
 <div class="member-block" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
 
   <img src="/26-the-data-miners/members/woodstock.jpeg"
