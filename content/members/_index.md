@@ -73,4 +73,24 @@ title: "Members"
     </ul>
   </div>
 
+  ### Anirudh Nanniyur
+<div class="member-block" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
+
+  <img src="/26-the-data-miners/members/woodstock.jpeg"
+       alt="Woodstock"
+       style="width: 150px; height: 150px; object-fit: contain; border-radius: 25%; object-position: center; flex-shrink: 0;">
+
+  <div style="flex: 1; text-align: left;">
+    <p style="margin: 0; padding-top: 0.5em;">
+      Anirudh Nanniyur is a rising senior at St. Francis High School in Mountain View, California. Some of his hobbies include:  
+    </p>
+    <ul style="margin: 0; padding-left: 20px;">
+      <li>Playing tennis</li>
+      <li>Singing Carnatic music</li>
+      <li>Watching the NBA, NFL, and tennis</li>
+    </ul>
+  </div>
+
+</div>
+
 </div>
