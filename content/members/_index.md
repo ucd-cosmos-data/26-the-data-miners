@@ -36,7 +36,6 @@ title: "Members"
 </div>
 
 ### Yuchen Wang
-
 <div class="member-block" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
 
   <img src="/26-the-data-miners/members/woodstock.jpeg"
@@ -51,6 +50,26 @@ title: "Members"
       <li>Competitive Swimming</li>
       <li>BBB</li>
       <li>CCC</li>
+    </ul>
+  </div>
+
+</div>
+
+### Samarth Gaggar
+<div class="member-block" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
+
+  <img src="/26-the-data-miners/members/woodstock.jpeg"
+       alt="Woodstock"
+       style="width: 150px; height: 150px; object-fit: contain; border-radius: 25%; object-position: center; flex-shrink: 0;">
+
+  <div style="flex: 1; text-align: left;">
+    <p style="margin: 0; padding-top: 0.5em;">
+      Samarth Gaggar is a rising junior at Dublin High School in Dublin, California.  
+    </p>
+    <ul style="margin: 0; padding-left: 20px;">
+      <li>Competitive Robotics and Debate</li>
+      <li>LLM Researcher</li>
+      <li>National Taekwondo Medalist</li>
     </ul>
   </div>
 
