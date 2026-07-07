@@ -18,8 +18,8 @@ title: "Members"
 
 <div class="member-block" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
 
-  <img src="/26-the-data-miners/members/coco.jpeg"
-       alt="Coco"
+  <img src="/26-the-data-miners/members/ridhima.jpeg"
+       alt="Ridhima"
        style="width: 150px; height: 150px; object-fit: contain; border-radius: 0%; object-position: center; flex-shrink: 0;">
 
   <div style="flex: 1; text-align: left;">
