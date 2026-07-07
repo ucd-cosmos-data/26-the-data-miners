@@ -68,8 +68,8 @@ title: "Members"
     </p>
     <ul style="margin: 0; padding-left: 20px;">
       <li>Competitive Robotics and Debate</li>
-      <li>LLM Researcher</li>
-      <li>National Taekwondo Medalist</li>
+      <li>Enjoys listening to music</li>
+      <li>Loves to play and watch cricket</li>
     </ul>
   </div>
 </div>
