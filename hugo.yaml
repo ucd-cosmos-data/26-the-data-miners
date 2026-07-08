@@ -31,14 +31,18 @@ menu:
       name: Project
       url: /project/
       weight: 20
+    - identifier: mini-projects
+      name: Mini Projects
+      url: /mini-projects/
+      weight: 30
     - identifier: Logs
       name: Logs
       url: /logs/
-      weight: 30
+      weight: 40
     - identifier: Photos
       name: Photos
       url: /photos/
-      weight: 40
+      weight: 50
     - identifier: course-site
       name: Course Website
       url: https://ucd-cosmos-data.github.io/
