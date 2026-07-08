@@ -1,3 +1,37 @@
+.mini-project-dropdown {
+  margin-bottom: 1rem;
+}
+
+.mini-project-dropdown__button {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.mini-project-dropdown__button::after {
+  content: "";
+  width: 0.52em;
+  aspect-ratio: 1;
+  border-right: 0.12em solid currentColor;
+  border-bottom: 0.12em solid currentColor;
+  transform: rotate(45deg) translateY(-0.12em);
+  transition: transform 160ms ease;
+}
+
+.mini-project-dropdown__button[aria-expanded="true"]::after {
+  transform: rotate(225deg) translateY(-0.12em);
+}
+
+.mini-project-dropdown__content[hidden] {
+  display: none;
+}
+
 .survey-dashboard {
   --ink: #17212b;
   --muted: #5f6f82;
