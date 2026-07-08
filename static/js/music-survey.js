@@ -1,47 +1,4 @@
 (function () {
-  function setupMiniProjectToggle() {
-    const heading = Array.from(document.querySelectorAll("h1, h2")).find((item) => item.textContent.trim() === "Mini Project #1");
-    if (!heading || heading.dataset.dropdownReady === "true") return;
-
-    const panel = document.createElement("div");
-    const panelId = "mini-project-1-content";
-    panel.className = "mini-project-dropdown__content";
-    panel.id = panelId;
-    panel.hidden = true;
-
-    let next = heading.nextElementSibling;
-    while (next && next.tagName !== "H1") {
-      const current = next;
-      next = next.nextElementSibling;
-      panel.append(current);
-    }
-
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "mini-project-dropdown__button";
-    button.setAttribute("aria-expanded", "false");
-    button.setAttribute("aria-controls", panelId);
-    button.innerHTML = `<span class="mini-project-dropdown__icon" aria-hidden="true"></span><span>${heading.textContent.trim()}</span>`;
-
-    heading.textContent = "";
-    heading.classList.add("mini-project-dropdown");
-    heading.dataset.dropdownReady = "true";
-    heading.append(button);
-    heading.after(panel);
-
-    button.addEventListener("click", () => {
-      const isOpen = button.getAttribute("aria-expanded") === "true";
-      button.setAttribute("aria-expanded", String(!isOpen));
-      panel.hidden = isOpen;
-    });
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", setupMiniProjectToggle);
-  } else {
-    setupMiniProjectToggle();
-  }
-
   const root = document.getElementById("music-survey-dashboard");
   if (!root) return;
 
