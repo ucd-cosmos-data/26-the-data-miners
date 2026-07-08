@@ -1,0 +1,146 @@
+[
+  {
+    "timestamp": "7/7/2026 10:44:27",
+    "gender": "Female",
+    "grade": "Junior",
+    "race": "White",
+    "artist": "Lady Gaga",
+    "album": "Honestly, Nevermind (2022)"
+  },
+  {
+    "timestamp": "7/7/2026 10:45:15",
+    "gender": "Female",
+    "grade": "Senior",
+    "race": "South Asian",
+    "artist": "Olivia Rodrigo",
+    "album": "Views (2016)"
+  },
+  {
+    "timestamp": "7/7/2026 10:46:35",
+    "gender": "Female",
+    "grade": "Senior",
+    "race": "South Asian",
+    "artist": "Olivia Rodrigo",
+    "album": "Scorpion (2018)"
+  },
+  {
+    "timestamp": "7/7/2026 10:48:57",
+    "gender": "Female",
+    "grade": "Junior",
+    "race": "Asian",
+    "artist": "Olivia Rodrigo",
+    "album": "Scorpion (2018)"
+  },
+  {
+    "timestamp": "7/7/2026 10:42:58",
+    "gender": "Male",
+    "grade": "Senior",
+    "race": "Asian",
+    "artist": "Travis Scott",
+    "album": "Certified Lover Boy (2021)"
+  },
+  {
+    "timestamp": "7/7/2026 10:43:51",
+    "gender": "Male",
+    "grade": "Senior",
+    "race": "South Asian",
+    "artist": "The Weeknd",
+    "album": "If You're Reading This It's Too Late (2015)"
+  },
+  {
+    "timestamp": "7/7/2026 10:44:01",
+    "gender": "Male",
+    "grade": "Junior",
+    "race": "Asian",
+    "artist": "Kendrick Lamar",
+    "album": "Views (2016)"
+  },
+  {
+    "timestamp": "7/7/2026 10:44:02",
+    "gender": "Male",
+    "grade": "Junior",
+    "race": "South Asian",
+    "artist": "Drake",
+    "album": "For All the Dogs (2023)"
+  },
+  {
+    "timestamp": "7/7/2026 10:44:22",
+    "gender": "Male",
+    "grade": "Senior",
+    "race": "Asian",
+    "artist": "The Weeknd",
+    "album": "Take Care (2011)"
+  },
+  {
+    "timestamp": "7/7/2026 10:44:23",
+    "gender": "Male",
+    "grade": "Junior",
+    "race": "Asian",
+    "artist": "Billie Eilish",
+    "album": "Take Care (2011)"
+  },
+  {
+    "timestamp": "7/7/2026 10:44:57",
+    "gender": "Male",
+    "grade": "Senior",
+    "race": "Asian",
+    "artist": "Travis Scott",
+    "album": "Views (2016)"
+  },
+  {
+    "timestamp": "7/7/2026 10:46:47",
+    "gender": "Male",
+    "grade": "Senior",
+    "race": "South Asian",
+    "artist": "The Weeknd",
+    "album": "ICEMAN (2026)"
+  },
+  {
+    "timestamp": "7/7/2026 10:46:52",
+    "gender": "Male",
+    "grade": "Senior",
+    "race": "White",
+    "artist": "Lady Gaga",
+    "album": "Thank Me Later (2010)"
+  },
+  {
+    "timestamp": "7/7/2026 10:46:58",
+    "gender": "Male",
+    "grade": "Junior",
+    "race": "Asian",
+    "artist": "Drake",
+    "album": "Certified Lover Boy (2021)"
+  },
+  {
+    "timestamp": "7/7/2026 10:47:16",
+    "gender": "Male",
+    "grade": "Junior",
+    "race": "Asian",
+    "artist": "Drake",
+    "album": "Certified Lover Boy (2021)"
+  },
+  {
+    "timestamp": "7/7/2026 10:48:34",
+    "gender": "Male",
+    "grade": "Senior",
+    "race": "South Asian",
+    "artist": "Drake",
+    "album": "Views (2016)"
+  },
+  {
+    "timestamp": "7/7/2026 10:48:55",
+    "gender": "Male",
+    "grade": "Junior",
+    "race": "South Asian",
+    "artist": "The Weeknd",
+    "album": "ICEMAN (2026)"
+  },
+  {
+    "timestamp": "7/7/2026 10:49:24",
+    "gender": "Male",
+    "grade": "Junior",
+    "race": "South Asian",
+    "artist": "Drake",
+    "album": "ICEMAN (2026)"
+  }
+]

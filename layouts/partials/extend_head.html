@@ -22,3 +22,8 @@ document.addEventListener("DOMContentLoaded", function() {
 {{ if .HasShortcode "plotly" }}
   <script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
 {{ end }}
+
+{{ if eq .Section "logs" }}
+  <link rel="stylesheet" href="{{ "css/music-survey.css" | relURL }}">
+  <script defer src="{{ "js/music-survey.js" | relURL }}"></script>
+{{ end }}
