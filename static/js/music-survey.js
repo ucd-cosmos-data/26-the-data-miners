@@ -1,12 +1,13 @@
 (function () {
   function setupMiniProjectToggle() {
-    const heading = Array.from(document.querySelectorAll("h1")).find((item) => item.textContent.trim() === "Mini Project #1");
+    const heading = Array.from(document.querySelectorAll("h1, h2")).find((item) => item.textContent.trim() === "Mini Project #1");
     if (!heading || heading.dataset.dropdownReady === "true") return;
 
     const panel = document.createElement("div");
     const panelId = "mini-project-1-content";
     panel.className = "mini-project-dropdown__content";
     panel.id = panelId;
+    panel.hidden = true;
 
     let next = heading.nextElementSibling;
     while (next && next.tagName !== "H1") {
@@ -18,9 +19,9 @@
     const button = document.createElement("button");
     button.type = "button";
     button.className = "mini-project-dropdown__button";
-    button.setAttribute("aria-expanded", "true");
+    button.setAttribute("aria-expanded", "false");
     button.setAttribute("aria-controls", panelId);
-    button.textContent = heading.textContent.trim();
+    button.innerHTML = `<span class="mini-project-dropdown__icon" aria-hidden="true"></span><span>${heading.textContent.trim()}</span>`;
 
     heading.textContent = "";
     heading.classList.add("mini-project-dropdown");

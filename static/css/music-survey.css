@@ -14,18 +14,17 @@
   cursor: pointer;
 }
 
-.mini-project-dropdown__button::after {
+.mini-project-dropdown__icon {
   content: "";
   width: 0.52em;
   aspect-ratio: 1;
-  border-right: 0.12em solid currentColor;
-  border-bottom: 0.12em solid currentColor;
-  transform: rotate(45deg) translateY(-0.12em);
+  border-top: 0.52em solid currentColor;
+  border-inline: 0.32em solid transparent;
   transition: transform 160ms ease;
 }
 
-.mini-project-dropdown__button[aria-expanded="true"]::after {
-  transform: rotate(225deg) translateY(-0.12em);
+.mini-project-dropdown__button[aria-expanded="true"] .mini-project-dropdown__icon {
+  transform: rotate(180deg);
 }
 
 .mini-project-dropdown__content[hidden] {
