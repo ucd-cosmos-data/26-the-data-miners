@@ -407,20 +407,25 @@ details.toc,
 }
 
 .survey-dashboard {
-    --ink: #e9f5ff;
-    --muted: #9dbbda;
-    --line: rgba(83, 226, 255, 0.22);
-    --panel: rgba(8, 23, 43, 0.82);
+    --ink: #eaf2fb;
+    --muted: #9eb0c5;
+    --line: rgba(143, 174, 204, 0.22);
+    --panel: rgba(16, 29, 43, 0.84);
+    --panel-strong: rgba(21, 38, 55, 0.94);
+    --field: rgba(7, 17, 28, 0.68);
     --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
     color: var(--ink);
     background:
-        linear-gradient(135deg, rgba(8, 23, 43, 0.98), rgba(12, 42, 70, 0.95)),
-        repeating-linear-gradient(90deg, rgba(83, 226, 255, 0.055) 0 1px, transparent 1px 30px);
-    border-block-color: var(--line);
+        radial-gradient(circle at 18% 8%, rgba(29, 112, 139, 0.26), transparent 30%),
+        radial-gradient(circle at 88% 0%, rgba(79, 92, 148, 0.22), transparent 34%),
+        linear-gradient(135deg, rgba(9, 25, 39, 0.98), rgba(14, 34, 48, 0.98) 48%, rgba(18, 24, 41, 0.98)),
+        repeating-linear-gradient(90deg, rgba(188, 212, 237, 0.035) 0 1px, transparent 1px 28px);
+    border-color: rgba(117, 151, 181, 0.28);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.28);
 }
 
 .survey-eyebrow {
-    color: var(--retro-amber);
+    color: #70d6c7;
 }
 
 .survey-dashboard h3,
@@ -444,18 +449,18 @@ details.toc,
 }
 
 .survey-filter select {
-    background: #061426;
-    border-color: rgba(83, 226, 255, 0.28);
+    background: var(--field);
+    border-color: rgba(143, 174, 204, 0.28);
 }
 
 .survey-reset {
     color: #03111e;
-    background: linear-gradient(135deg, var(--retro-cyan), var(--retro-amber));
+    background: #70d6c7;
 }
 
 .survey-reset:hover,
 .survey-reset:focus-visible {
-    background: linear-gradient(135deg, var(--retro-amber), var(--retro-pink));
+    background: #98eadf;
 }
 
 .survey-bar:hover,
