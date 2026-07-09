@@ -4,11 +4,13 @@ title: "The Data Miners"
 theme: ["PaperMod"]
 
 params:
-  defaultTheme: auto
+  defaultTheme: dark
   disableThemeToggle: true
-  ShowToc: false
+  description: "A COSMOS team site for student data stories, mini-projects, logs, and field notes."
   assets:
     favicon: bonsai.jpeg #the small icon shown in the browser tab
+    theme_color: "#07111f"
+  ShowToc: false
   socialIcons:
     - name: github
       url: "https://github.com/ucd-cosmos-data/26-the-data-miners"
@@ -16,10 +18,9 @@ params:
   profileMode:
     enabled: true
     title: "The Data Miners"
-    subtitle: "<Description>"
-    imageUrl: "/26-the-data-miners/bonsai.jpeg"
-    imageWidth: 300
-    imageHeight: 300
+    imageUrl: "/26-the-data-miners/diamond-pickaxe-retro.png"
+    imageWidth: 360
+    imageHeight: 360
 
 menu:
   main:
