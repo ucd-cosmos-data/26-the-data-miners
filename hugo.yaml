@@ -8,12 +8,14 @@ params:
   disableThemeToggle: true
   description: "A COSMOS team site for student data stories, mini-projects, logs, and field notes."
   assets:
-    favicon: bonsai.jpeg #the small icon shown in the browser tab
+    favicon: diamond-pickaxe-retro.png #the small icon shown in the browser tab
     theme_color: "#07111f"
   ShowToc: false
   socialIcons:
     - name: github
       url: "https://github.com/ucd-cosmos-data/26-the-data-miners"
+    - name: github
+      url: "https://github.com/ucd-cosmos-data/26-the-data-miners-analysis"
   math: True
   profileMode:
     enabled: true
