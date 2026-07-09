@@ -379,18 +379,11 @@ details.toc,
     box-shadow: var(--retro-shadow), var(--retro-glow);
 }
 
-.project-card__media {
-    min-height: clamp(150px, 28vw, 250px);
-    padding: 1rem;
-    color: #03111e;
-    font-size: clamp(1.8rem, 5vw, 3.1rem);
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    text-transform: uppercase;
-    background:
-        linear-gradient(135deg, rgba(83, 226, 255, 0.96), rgba(255, 209, 102, 0.92)),
-        repeating-linear-gradient(90deg, rgba(7, 17, 31, 0.2) 0 2px, transparent 2px 12px);
+.project-card__body {
+    display: flex;
+    min-height: clamp(260px, 30vw, 360px);
+    flex-direction: column;
+    justify-content: center;
 }
 
 .project-card h2,
