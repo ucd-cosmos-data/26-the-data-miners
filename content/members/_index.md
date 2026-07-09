@@ -48,8 +48,8 @@ title: "Members"
     </p>
     <ul style="margin: 0; padding-left: 20px;">
       <li>Competitive Swimming</li>
-      <li>BBB</li>
-      <li>CCC</li>
+      <li>Amatuer App Developer</li>
+      <li>Mint Fanatic</li>
     </ul>
   </div>
 
