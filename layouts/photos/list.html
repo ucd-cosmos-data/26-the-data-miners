@@ -9,53 +9,6 @@
 {{- if .Content }}
 <div class="post-content md-content">{{ .Content }}</div>
 {{- end }}
-<style>
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 12px;
-  margin-top: 20px;
-}
-.photo-grid button {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 6px;
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: zoom-in;
-}
-.photo-grid img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.2s ease;
-}
-.photo-grid button:hover img {
-  transform: scale(1.05);
-}
-.photo-lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  background: rgba(0, 0, 0, 0.85);
-  cursor: zoom-out;
-  align-items: center;
-  justify-content: center;
-}
-.photo-lightbox.active {
-  display: flex;
-}
-.photo-lightbox img {
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain;
-}
-</style>
 {{- $exts := slice "jpg" "jpeg" "png" "gif" "webp" }}
 {{- $entries := os.ReadDir "static/photos" }}
 {{- $images := slice }}

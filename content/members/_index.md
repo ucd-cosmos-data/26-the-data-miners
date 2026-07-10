@@ -1,32 +1,19 @@
 ---
 title: "Members"
 ---
-<style>
-@media (max-width: 600px) {
-  .member-block {
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center;
-  }
-  .member-block img {
-    margin-bottom: 10px;
-  }
-}
-</style>
 
 ### Ridhima Kapoor
 
-<div class="member-block" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
+<div class="member-block">
 
   <img src="/26-the-data-miners/members/ridhima.jpeg"
-       alt="Ridhima"
-       style="width: 150px; height: 150px; object-fit: contain; border-radius: 0%; object-position: center; flex-shrink: 0;">
+       alt="Ridhima">
 
-  <div style="flex: 1; text-align: left;">
-    <p style="margin: 0; padding-top: 0.5em;">
+  <div>
+    <p>
       Ridhima Kapoor is a rising senior at John F. Kennedy High School. In her  free time, she enjoys 
     </p>
-    <ul style="margin: 0; padding-left: 20px;">
+    <ul>
       <li>Reading and dancing</li>
       <li>Hanging out with her dog</li>
       <li>Trying out new restaurants with her friends</li>
@@ -36,17 +23,16 @@ title: "Members"
 </div>
 
 ### Yuchen Wang
-<div class="member-block" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
+<div class="member-block">
 
   <img src="/26-the-data-miners/members/Yuchenswimmingpicture.jpeg"
-       alt="Woodstock"
-       style="width: 150px; height: 150px; object-fit: contain; border-radius: 25%; object-position: center; flex-shrink: 0;">
+       alt="Yuchen Wang">
 
-  <div style="flex: 1; text-align: left;">
-    <p style="margin: 0; padding-top: 0.5em;">
+  <div>
+    <p>
       Yuchen Wang is a rising senior at Westview High School in San Diego California.  
     </p>
-    <ul style="margin: 0; padding-left: 20px;">
+    <ul>
       <li>Competitive Swimming</li>
       <li>BBB</li>
       <li>CCC</li>
@@ -56,17 +42,16 @@ title: "Members"
 </div>
 
 ### Samarth Gaggar
-<div class="member-block" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
+<div class="member-block">
 
   <img src="/26-the-data-miners/members/samarthphoto.jpg"
-       alt="Samarth"
-       style="width: 150px; height: 150px; object-fit: contain; border-radius: 25%; object-position: center; flex-shrink: 0;">
+       alt="Samarth">
 
-  <div style="flex: 1; text-align: left;">
-    <p style="margin: 0; padding-top: 0.5em;">
+  <div>
+    <p>
       Samarth Gaggar is a rising junior at Dublin High School in Dublin, California.  
     </p>
-    <ul style="margin: 0; padding-left: 20px;">
+    <ul>
       <li>Competitive Robotics and Debate</li>
       <li>Enjoys listening to music</li>
       <li>Loves to play and watch cricket</li>
@@ -76,17 +61,16 @@ title: "Members"
 
 
 ### Anirudh Nanniyur
-<div class="member-block" style="display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;">
+<div class="member-block">
 
   <img src="/26-the-data-miners/members/aniphoto.jpeg"
-       alt="Anirudh"
-       style="width: 150px; height: 150px; object-fit: contain; border-radius: 25%; object-position: center; flex-shrink: 0;">
+       alt="Anirudh">
 
-  <div style="flex: 1; text-align: left;">
-    <p style="margin: 0; padding-top: 0.5em;">
+  <div>
+    <p>
       Anirudh Nanniyur is a rising senior at St. Francis High School in Mountain View, California. Some of his hobbies include:  
     </p>
-    <ul style="margin: 0; padding-left: 20px;">
+    <ul>
       <li>Playing tennis</li>
       <li>Playing chess</li>
       <li>Watching the NBA, NFL, and tennis</li>
