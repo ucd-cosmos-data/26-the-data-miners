@@ -935,15 +935,13 @@ details.toc,
 .project-card__media {
     min-height: clamp(150px, 28vw, 250px);
     padding: 1rem;
-    color: #03111e;
+    color: var(--primary);
     font-size: clamp(1.8rem, 5vw, 3.1rem);
     font-weight: 700;
     line-height: 1;
     text-align: center;
     text-transform: uppercase;
-    background:
-        linear-gradient(135deg, rgba(83, 226, 255, 0.96), rgba(255, 209, 102, 0.92)),
-        repeating-linear-gradient(90deg, rgba(7, 17, 31, 0.2) 0 2px, transparent 2px 12px);
+    background: var(--entry);
 }
 
 .project-card h2,
@@ -2113,10 +2111,8 @@ details.toc,
 }
 
 .project-card__media {
-    color: var(--surface-deep);
-    background:
-        linear-gradient(135deg, rgba(223, 252, 255, 0.95), rgba(168, 224, 195, 0.92)),
-        repeating-linear-gradient(90deg, rgba(49, 84, 77, 0.16) 0 2px, transparent 2px 12px);
+    color: var(--primary);
+    background: var(--entry);
 }
 
 .project-card span,
@@ -2388,12 +2384,16 @@ body.ore-page--photos {
     color: var(--page-accent);
 }
 
-.ore-page .project-card__media,
 .ore-page .mine-button--primary,
 .ore-page .pagination a,
 .ore-page .survey-reset {
     color: var(--page-stone-bottom);
     background: linear-gradient(135deg, var(--page-accent), var(--page-accent-soft));
+}
+
+.ore-page .project-card__media {
+    color: var(--primary);
+    background: var(--entry);
 }
 
 .ore-page .photo-lightbox {
