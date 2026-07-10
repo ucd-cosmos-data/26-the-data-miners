@@ -13,6 +13,8 @@
   var targetX = -100;
   var targetY = -100;
   var count = 0;
+  var respawnDelayMin = 4000;
+  var respawnDelayMax = 12000;
 
   function enableCursor() {
     return cursor && finePointer.matches && !reduceMotion.matches;
@@ -49,6 +51,10 @@
         node.remove();
       }, 560, sparkle);
     }
+  }
+
+  function getRespawnDelay() {
+    return respawnDelayMin + Math.random() * (respawnDelayMax - respawnDelayMin);
   }
 
   if (enableCursor()) {
@@ -134,11 +140,19 @@
       }
 
       ore.classList.add("is-collected");
+      ore.disabled = true;
+      ore.setAttribute("aria-label", "Diamond ore respawning");
       count += 1;
       if (countLabel) {
         countLabel.textContent = String(count);
       }
       burstSparkles(event.clientX, event.clientY);
+
+      window.setTimeout(function () {
+        ore.classList.remove("is-collected");
+        ore.disabled = false;
+        ore.setAttribute("aria-label", "Collect hidden diamond ore");
+      }, getRespawnDelay());
     });
   });
 })();

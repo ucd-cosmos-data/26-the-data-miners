@@ -27,6 +27,14 @@
     {{- $bodyClasses = $bodyClasses | append "ore-page" (printf "ore-page--%s" ($section | urlize)) }}
 {{- end }}
 <body class="{{ delimit $bodyClasses " " }}" id="top">
+    {{- if not .IsHome }}
+    <div class="surface-page-scene" aria-hidden="true">
+        <span class="surface-page-scene__field"></span>
+        <span class="surface-page-scene__wall surface-page-scene__wall--left"></span>
+        <span class="surface-page-scene__wall surface-page-scene__wall--right"></span>
+        <span class="surface-page-scene__dust"></span>
+    </div>
+    {{- end }}
     {{ partialCached "header.html" . .Page -}}
     <main class="main">
         {{- block "main" . }}{{ end }}

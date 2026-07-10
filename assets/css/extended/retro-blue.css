@@ -2407,3 +2407,126 @@ body.ore-page--photos {
     background: var(--page-panel-strong);
     border-top-color: var(--page-border);
 }
+
+
+/* Use the landing page's surface layer as the shared internal-page background. */
+body.ore-page {
+    --page-panel: rgba(39, 67, 57, 0.78);
+    --page-panel-strong: rgba(27, 49, 42, 0.92);
+    --page-border: rgba(223, 252, 255, 0.32);
+    --page-glow: rgba(111, 243, 255, 0.16);
+    position: relative;
+    overflow-x: hidden;
+    isolation: isolate;
+    background: #3a291f;
+}
+
+.ore-page > .header,
+.ore-page > .main,
+.ore-page > .footer {
+    position: relative;
+    z-index: 2;
+}
+
+.ore-page > .header {
+    z-index: 20;
+}
+
+.surface-page-scene,
+.surface-page-scene span {
+    position: fixed;
+    pointer-events: none;
+}
+
+.surface-page-scene {
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.surface-page-scene__field {
+    inset: var(--header-height) 0 0;
+    background:
+        radial-gradient(circle at 16% 14%, rgba(255, 255, 255, 0.92) 0 0.09rem, transparent 0.15rem),
+        radial-gradient(circle at 68% 18%, rgba(255, 255, 255, 0.7) 0 0.07rem, transparent 0.13rem),
+        radial-gradient(ellipse at 50% 4%, rgba(223, 252, 255, 0.26), transparent 28rem),
+        linear-gradient(180deg,
+            #7fc7f7 0%,
+            #8fccec 24%,
+            #73aaa0 49%,
+            #557859 68%,
+            #4f7a51 68%,
+            #4f7a51 74%,
+            #59472f 74%,
+            #463522 84%,
+            #34251c 100%);
+}
+
+.surface-page-scene__field::after {
+    position: absolute;
+    inset: 74% 0 0;
+    content: "";
+    opacity: 0.26;
+    background:
+        repeating-linear-gradient(164deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 38px),
+        linear-gradient(180deg, rgba(91, 67, 43, 0.18), rgba(31, 22, 17, 0.28));
+}
+
+.surface-page-scene__wall {
+    top: var(--header-height);
+    bottom: 0;
+    z-index: 1;
+    width: clamp(8rem, 20vw, 23rem);
+    opacity: 0.92;
+    background:
+        radial-gradient(circle at 34% 22%, rgba(255, 255, 255, 0.08), transparent 0.55rem),
+        radial-gradient(circle at 62% 58%, rgba(255, 255, 255, 0.055), transparent 0.45rem),
+        repeating-linear-gradient(160deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 30px),
+        linear-gradient(180deg, rgba(70, 78, 88, 0.96), rgba(43, 45, 48, 0.98) 68%, rgba(29, 29, 31, 0.99));
+    filter: drop-shadow(0 0 2rem rgba(0, 0, 0, 0.24));
+}
+
+.surface-page-scene__wall--left {
+    left: 0;
+    clip-path: polygon(0 0, 74% 0, 58% 18%, 78% 34%, 50% 58%, 70% 78%, 48% 100%, 0 100%);
+}
+
+.surface-page-scene__wall--right {
+    right: 0;
+    clip-path: polygon(26% 0, 100% 0, 100% 100%, 52% 100%, 30% 78%, 50% 58%, 22% 34%, 42% 18%);
+}
+
+.surface-page-scene__dust {
+    inset: var(--header-height) 0 0;
+    z-index: 2;
+    opacity: 0.38;
+    background:
+        radial-gradient(circle at 7% 18%, rgba(255, 255, 255, 0.45) 0 0.08rem, transparent 0.14rem),
+        radial-gradient(circle at 74% 26%, rgba(223, 252, 255, 0.42) 0 0.07rem, transparent 0.13rem),
+        radial-gradient(circle at 48% 63%, rgba(255, 255, 255, 0.26) 0 0.06rem, transparent 0.11rem),
+        radial-gradient(circle at 92% 76%, rgba(255, 255, 255, 0.2) 0 0.08rem, transparent 0.14rem);
+    animation: mine-drift 16s ease-in-out infinite alternate;
+}
+
+.ore-page .header {
+    background: rgba(47, 91, 78, 0.9);
+    border-bottom-color: rgba(223, 252, 255, 0.26);
+}
+
+.ore-page .footer {
+    background: rgba(35, 67, 58, 0.88);
+    border-top-color: rgba(223, 252, 255, 0.22);
+}
+
+@media (max-width: 700px) {
+    .surface-page-scene__wall {
+        width: 7rem;
+        opacity: 0.78;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .surface-page-scene__dust {
+        animation: none;
+    }
+}
