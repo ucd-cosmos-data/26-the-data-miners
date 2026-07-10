@@ -9,7 +9,7 @@ params:
   description: "A COSMOS team site for student data stories, mini-projects, logs, and field notes."
   assets:
     favicon: diamond-pickaxe-retro.png #the small icon shown in the browser tab
-    theme_color: "#07111f"
+    theme_color: "#4f7658"
   ShowToc: false
   socialIcons:
     - name: github

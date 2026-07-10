@@ -2,24 +2,39 @@
 :root[data-theme="dark"] {
     --gap: 26px;
     --radius: 8px;
-    --theme: #07111f;
-    --entry: rgba(13, 31, 56, 0.86);
-    --primary: #e8f3ff;
-    --secondary: #93b5d5;
-    --tertiary: #19385f;
-    --content: #d4e7fb;
-    --code-block-bg: #07101d;
-    --code-bg: rgba(11, 27, 49, 0.94);
-    --border: rgba(83, 226, 255, 0.22);
-    --retro-cyan: #53e2ff;
-    --retro-blue: #4d8dff;
-    --retro-amber: #ffd166;
-    --retro-pink: #ff5c8a;
-    --retro-green: #61f0b5;
-    --retro-panel: rgba(12, 29, 52, 0.78);
-    --retro-panel-strong: rgba(16, 42, 75, 0.92);
+    --surface-sky: #9ed6ff;
+    --surface-teal: #79aea2;
+    --surface-green: #4f7658;
+    --surface-deep: #31544d;
+    --landing-background:
+        radial-gradient(circle at 18% 10%, rgba(223, 252, 255, 0.32), transparent 26rem),
+        linear-gradient(180deg, rgba(31, 69, 67, 0.05), rgba(31, 67, 55, 0.2)),
+        linear-gradient(180deg, var(--surface-sky) 0%, var(--surface-teal) 48%, var(--surface-green) 100%);
+    --theme: var(--surface-green);
+    --entry: rgba(40, 82, 76, 0.72);
+    --primary: #f5fbff;
+    --secondary: #dcecf4;
+    --tertiary: rgba(111, 243, 255, 0.28);
+    --content: #edf8fa;
+    --code-block-bg: rgba(32, 72, 68, 0.9);
+    --code-bg: rgba(45, 86, 79, 0.78);
+    --border: rgba(223, 252, 255, 0.34);
+    --retro-cyan: #6ff3ff;
+    --retro-blue: #9ed6ff;
+    --retro-amber: #dffcff;
+    --retro-pink: #8ee8df;
+    --retro-green: #a8e0c3;
+    --retro-panel: rgba(38, 79, 73, 0.68);
+    --retro-panel-strong: rgba(35, 72, 68, 0.88);
     --retro-shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
     --retro-glow: 0 0 26px rgba(83, 226, 255, 0.18);
+    --stone: #537e72;
+    --deep-stone: #31544d;
+    --ore-redstone: #8ee8df;
+    --ore-gold: #dffcff;
+    --ore-lapis: #9ed6ff;
+    --ore-diamond: #6ff3ff;
+    --ore-emerald: #a8e0c3;
     color-scheme: dark;
 }
 
@@ -36,13 +51,14 @@ body {
     min-height: 100%;
     color: var(--content);
     font-family: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
-    background:
-        radial-gradient(circle at 14% 8%, rgba(83, 226, 255, 0.16), transparent 30rem),
-        radial-gradient(circle at 86% 12%, rgba(255, 92, 138, 0.12), transparent 28rem),
-        linear-gradient(180deg, rgba(7, 17, 31, 0.94), rgba(5, 12, 24, 0.99)),
-        repeating-linear-gradient(0deg, rgba(83, 226, 255, 0.045) 0 1px, transparent 1px 34px),
-        repeating-linear-gradient(90deg, rgba(83, 226, 255, 0.035) 0 1px, transparent 1px 34px);
+    background: var(--landing-background);
     background-attachment: fixed;
+}
+
+body.mine-cursor-enabled,
+body.mine-cursor-enabled .mine-home a,
+body.mine-cursor-enabled .mine-home button {
+    cursor: none;
 }
 
 body::before {
@@ -83,7 +99,14 @@ kbd,
 .survey-eyebrow,
 .survey-stat__label,
 .survey-panel__tag {
-    font-family: "IBM Plex Mono", "Cascadia Mono", "Courier New", monospace;
+    font-family: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
 }
 
 .header {
@@ -113,7 +136,7 @@ kbd,
 .logo a::before {
     color: var(--retro-amber);
     content: ">";
-    font-family: "IBM Plex Mono", "Cascadia Mono", "Courier New", monospace;
+    font-family: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
 }
 
 .menu {
@@ -144,12 +167,22 @@ kbd,
     max-width: min(1120px, calc(100vw - 24px));
 }
 
+.main:has(.mine-home) {
+    max-width: none;
+    width: 100%;
+    padding: 0;
+}
+
 .page-header,
 .post-header {
     position: relative;
     margin-top: clamp(2rem, 6vw, 4.5rem);
     padding: clamp(1rem, 3vw, 1.35rem) 0 0.9rem;
-    border-bottom: 1px solid rgba(83, 226, 255, 0.22);
+    border-bottom: 1px solid rgba(111, 243, 255, 0.2);
+    background:
+        radial-gradient(circle at 8% 0, rgba(111, 243, 255, 0.08), transparent 18rem),
+        linear-gradient(90deg, rgba(13, 22, 34, 0.42), transparent);
+    border-radius: var(--radius);
 }
 
 .page-header::after,
@@ -242,6 +275,520 @@ kbd,
     box-shadow: 0 10px 24px rgba(83, 226, 255, 0.14);
 }
 
+.mine-home {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 100vh;
+    margin-inline: calc(50% - 50vw);
+    color: var(--content);
+    background:
+        radial-gradient(circle at 52% 8%, rgba(95, 243, 255, 0.16), transparent 18rem),
+        linear-gradient(180deg, #102033 0%, #121a28 18%, #0d121d 42%, #070a10 72%, #030508 100%);
+}
+
+.mine-home::before,
+.mine-home::after {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    content: "";
+}
+
+.mine-home::before {
+    background:
+        radial-gradient(circle at 12% 28%, rgba(255, 209, 102, 0.12), transparent 14rem),
+        radial-gradient(circle at 86% 46%, rgba(255, 77, 101, 0.1), transparent 13rem),
+        radial-gradient(circle at 28% 76%, rgba(111, 243, 255, 0.16), transparent 16rem),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 44px);
+}
+
+.mine-home::after {
+    opacity: 0.44;
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.28), transparent 16%, transparent 84%, rgba(0, 0, 0, 0.32)),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 5px);
+    mix-blend-mode: screen;
+}
+
+.mine-layer {
+    position: relative;
+}
+
+.mine-layer::before,
+.mine-layer::after {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    content: "";
+}
+
+.mine-layer::before {
+    inset: 0;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(96, 240, 181, 0.11), transparent 9rem),
+        radial-gradient(circle at 90% 40%, rgba(255, 209, 102, 0.09), transparent 10rem),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.24), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.28));
+}
+
+.mine-layer::after {
+    inset: auto 0 0;
+    height: 8rem;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.26));
+}
+
+.mine-hero,
+.mine-section {
+    width: min(1180px, calc(100vw - 32px));
+    margin-inline: auto;
+}
+
+.mine-hero {
+    display: grid;
+    min-height: calc(100vh - var(--header-height));
+    padding-block: clamp(4rem, 9vw, 8rem) clamp(4rem, 8vw, 6rem);
+    align-items: center;
+}
+
+.mine-sky {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 34%;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.18), transparent 0.16rem),
+        radial-gradient(circle at 46% 14%, rgba(255, 255, 255, 0.14), transparent 0.12rem),
+        radial-gradient(circle at 74% 30%, rgba(255, 255, 255, 0.2), transparent 0.14rem),
+        linear-gradient(180deg, rgba(68, 142, 193, 0.24), transparent);
+    mask-image: linear-gradient(180deg, #000, transparent);
+}
+
+.mine-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(240px, 0.72fr);
+    gap: clamp(2rem, 7vw, 6rem);
+    align-items: center;
+}
+
+.mine-kicker {
+    margin: 0 0 0.8rem;
+    color: var(--retro-amber);
+    font-family: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.mine-hero h1,
+.mine-section h2 {
+    margin: 0;
+    color: var(--primary);
+    line-height: 0.95;
+    text-wrap: balance;
+    text-shadow: 0 0 30px rgba(111, 243, 255, 0.18);
+}
+
+.mine-hero h1 {
+    max-width: 10ch;
+    font-size: clamp(4.2rem, 14vw, 10.5rem);
+}
+
+.mine-section h2 {
+    max-width: 13ch;
+    font-size: clamp(2.4rem, 6vw, 5.6rem);
+}
+
+.mine-hero__lede,
+.mine-section__header p,
+.mine-diamond-panel p {
+    max-width: 42rem;
+    color: #b7cbe0;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    line-height: 1.65;
+}
+
+.mine-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.6rem;
+}
+
+.mine-button {
+    display: inline-flex;
+    min-height: 2.85rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.1rem;
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid rgba(111, 243, 255, 0.26);
+    border-radius: var(--radius);
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.mine-button:hover,
+.mine-button:focus-visible {
+    transform: translateY(-2px);
+    color: #03111e;
+    text-decoration: none;
+}
+
+.mine-button--primary {
+    color: #03111e;
+    background: linear-gradient(135deg, var(--ore-diamond), var(--ore-emerald));
+    box-shadow: 0 18px 48px rgba(83, 226, 255, 0.18);
+}
+
+.mine-button--ghost {
+    background: rgba(11, 22, 36, 0.64);
+}
+
+.mine-button--ghost:hover,
+.mine-button--ghost:focus-visible {
+    color: var(--primary);
+    border-color: rgba(111, 243, 255, 0.62);
+    background: rgba(111, 243, 255, 0.1);
+    box-shadow: var(--retro-glow);
+}
+
+.mine-hero__artifact {
+    display: grid;
+    place-items: center;
+}
+
+.mine-pickaxe-ring {
+    position: relative;
+    display: grid;
+    width: min(100%, 25rem);
+    aspect-ratio: 1;
+    place-items: center;
+    border: 1px solid rgba(111, 243, 255, 0.22);
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, rgba(111, 243, 255, 0.16), transparent 58%),
+        conic-gradient(from 180deg, rgba(111, 243, 255, 0.05), rgba(255, 209, 102, 0.22), rgba(255, 77, 101, 0.1), rgba(111, 243, 255, 0.05));
+    box-shadow: inset 0 0 60px rgba(111, 243, 255, 0.12), 0 30px 90px rgba(0, 0, 0, 0.34);
+}
+
+.mine-pickaxe-ring::before,
+.mine-pickaxe-ring::after {
+    position: absolute;
+    content: "";
+    border-radius: inherit;
+}
+
+.mine-pickaxe-ring::before {
+    inset: 11%;
+    border: 1px dashed rgba(111, 243, 255, 0.24);
+}
+
+.mine-pickaxe-ring::after {
+    inset: 23%;
+    background:
+        linear-gradient(45deg, transparent 0 48%, rgba(111, 243, 255, 0.16) 48% 52%, transparent 52%),
+        linear-gradient(-45deg, transparent 0 48%, rgba(255, 209, 102, 0.12) 48% 52%, transparent 52%);
+}
+
+.mine-pickaxe-ring img {
+    position: relative;
+    z-index: 1;
+    width: 72%;
+    filter: drop-shadow(0 0 22px rgba(111, 243, 255, 0.44)) drop-shadow(0 24px 34px rgba(0, 0, 0, 0.42));
+    transform: rotate(-10deg);
+}
+
+.mine-scroll-cue {
+    position: absolute;
+    right: clamp(1rem, 5vw, 3rem);
+    bottom: 2rem;
+    color: var(--secondary);
+    font-family: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.mine-scroll-cue::after {
+    display: block;
+    width: 1px;
+    height: 3.5rem;
+    margin: 0.65rem auto 0;
+    content: "";
+    background: linear-gradient(180deg, var(--retro-cyan), transparent);
+}
+
+.mine-section {
+    padding-block: clamp(5rem, 10vw, 9rem);
+}
+
+.mine-section--team {
+    background:
+        radial-gradient(circle at 0 22%, rgba(96, 240, 181, 0.12), transparent 16rem),
+        linear-gradient(180deg, rgba(18, 26, 38, 0.48), rgba(10, 16, 26, 0.72));
+}
+
+.mine-section--story {
+    background:
+        radial-gradient(circle at 94% 28%, rgba(255, 209, 102, 0.11), transparent 17rem),
+        linear-gradient(180deg, rgba(11, 16, 26, 0.8), rgba(8, 12, 20, 0.88));
+}
+
+.mine-section--projects {
+    background:
+        radial-gradient(circle at 12% 38%, rgba(255, 77, 101, 0.13), transparent 16rem),
+        radial-gradient(circle at 88% 68%, rgba(105, 167, 255, 0.13), transparent 16rem),
+        linear-gradient(180deg, rgba(8, 12, 20, 0.92), rgba(5, 8, 14, 0.94));
+}
+
+.mine-section--gallery,
+.mine-section--diamond {
+    background: linear-gradient(180deg, rgba(5, 8, 14, 0.94), rgba(2, 4, 8, 0.98));
+}
+
+.mine-section__header {
+    margin-bottom: clamp(1.8rem, 5vw, 3.5rem);
+}
+
+.mine-team-grid,
+.mine-story-grid,
+.mine-project-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.mine-story-grid,
+.mine-project-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mine-member-card,
+.mine-step,
+.mine-project-card,
+.mine-diamond-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(111, 243, 255, 0.16);
+    border-radius: var(--radius);
+    background:
+        linear-gradient(145deg, rgba(22, 32, 48, 0.9), rgba(7, 12, 21, 0.92)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 18px);
+    box-shadow: 0 22px 58px rgba(0, 0, 0, 0.28);
+}
+
+.mine-member-card::before,
+.mine-step::before,
+.mine-project-card::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    content: "";
+    background: linear-gradient(90deg, var(--ore-diamond), transparent);
+    opacity: 0.75;
+}
+
+.mine-member-card {
+    padding: 0.9rem;
+}
+
+.mine-member-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: calc(var(--radius) - 2px);
+    border: 1px solid rgba(111, 243, 255, 0.2);
+}
+
+.mine-member-card h3,
+.mine-step h3,
+.mine-project-card h3 {
+    margin: 1rem 0 0.4rem;
+    color: var(--primary);
+    line-height: 1.05;
+}
+
+.mine-member-card p,
+.mine-step p,
+.mine-project-card p {
+    margin: 0;
+    color: #a9bed3;
+    line-height: 1.55;
+}
+
+.mine-step {
+    padding: clamp(1rem, 3vw, 1.4rem);
+}
+
+.mine-step span,
+.mine-project-card span {
+    color: var(--retro-amber);
+    font-family: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.mine-project-card {
+    display: block;
+    min-height: 18rem;
+    padding: clamp(1.1rem, 3vw, 1.5rem);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.mine-project-card:hover,
+.mine-project-card:focus-visible {
+    transform: translateY(-4px);
+    color: inherit;
+    text-decoration: none;
+    border-color: rgba(111, 243, 255, 0.46);
+    box-shadow: 0 26px 70px rgba(0, 0, 0, 0.32), var(--retro-glow);
+}
+
+.mine-ore--redstone::before {
+    background: linear-gradient(90deg, var(--ore-redstone), transparent);
+}
+
+.mine-ore--gold::before {
+    background: linear-gradient(90deg, var(--ore-gold), transparent);
+}
+
+.mine-ore--lapis::before {
+    background: linear-gradient(90deg, var(--ore-lapis), transparent);
+}
+
+.mine-gallery-strip {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.8rem;
+}
+
+.mine-gallery-strip a {
+    min-height: 8rem;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid rgba(111, 243, 255, 0.16);
+    border-radius: var(--radius);
+    background:
+        radial-gradient(circle at 24% 22%, rgba(111, 243, 255, 0.14), transparent 42%),
+        linear-gradient(145deg, rgba(19, 29, 44, 0.92), rgba(4, 8, 14, 0.94));
+    transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.mine-gallery-strip a:hover,
+.mine-gallery-strip a:focus-visible {
+    transform: translateY(-3px);
+    color: var(--primary);
+    border-color: rgba(111, 243, 255, 0.48);
+}
+
+.mine-section--diamond {
+    min-height: 78vh;
+    display: grid;
+    place-items: center;
+}
+
+.mine-diamond-panel {
+    width: min(760px, 100%);
+    padding: clamp(1.4rem, 5vw, 3rem);
+    text-align: center;
+    background:
+        radial-gradient(circle at 50% 0, rgba(111, 243, 255, 0.28), transparent 45%),
+        linear-gradient(145deg, rgba(13, 26, 40, 0.94), rgba(2, 5, 10, 0.96));
+}
+
+.mine-diamond-panel h2 {
+    max-width: none;
+}
+
+.mine-diamond-panel p,
+.mine-diamond-panel .mine-actions {
+    margin-inline: auto;
+    justify-content: center;
+}
+
+.mine-rock {
+    position: absolute;
+    width: clamp(3.2rem, 7vw, 5.2rem);
+    aspect-ratio: 1;
+    border: 1px solid rgba(111, 243, 255, 0.18);
+    border-radius: 34% 44% 38% 48%;
+    background:
+        radial-gradient(circle at 34% 28%, rgba(111, 243, 255, 0.42), transparent 0.35rem),
+        linear-gradient(145deg, #263149, #111827 70%);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.mine-rock:hover,
+.mine-rock:focus-visible {
+    transform: scale(1.05) rotate(-4deg);
+}
+
+.mine-rock.is-cracked {
+    opacity: 0.58;
+    transform: scale(0.92) rotate(8deg);
+    background:
+        linear-gradient(45deg, transparent 0 46%, rgba(255, 255, 255, 0.72) 46% 50%, transparent 50%),
+        radial-gradient(circle at 34% 28%, rgba(111, 243, 255, 0.42), transparent 0.35rem),
+        linear-gradient(145deg, #263149, #111827 70%);
+}
+
+.mine-rock--one {
+    right: 11%;
+    bottom: 16%;
+}
+
+.mine-rock--two {
+    left: 9%;
+    bottom: 28%;
+}
+
+.mine-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 3.25rem;
+    height: 3.25rem;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate3d(-100px, -100px, 0);
+    transition: opacity 180ms ease;
+    will-change: transform;
+}
+
+.mine-cursor img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(111, 243, 255, 0.5)) drop-shadow(0 9px 12px rgba(0, 0, 0, 0.34));
+    transform: rotate(-28deg);
+}
+
+body.mine-cursor-enabled .mine-cursor {
+    opacity: 1;
+}
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .post-entry,
 .post-tags a,
 .share-buttons,
@@ -293,6 +840,12 @@ details.toc,
     color: var(--content);
     font-size: 1.06rem;
     line-height: 1.75;
+    padding: clamp(1rem, 3vw, 1.4rem);
+    border: 1px solid rgba(111, 243, 255, 0.13);
+    border-radius: var(--radius);
+    background:
+        linear-gradient(145deg, rgba(18, 29, 43, 0.62), rgba(5, 9, 16, 0.66)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.028) 0 1px, transparent 1px 24px);
 }
 
 .post-content code {
@@ -379,11 +932,17 @@ details.toc,
     box-shadow: var(--retro-shadow), var(--retro-glow);
 }
 
-.project-card__body {
-    display: flex;
-    min-height: clamp(260px, 30vw, 360px);
-    flex-direction: column;
-    justify-content: center;
+.project-card__media {
+    min-height: clamp(150px, 28vw, 250px);
+    padding: 1rem;
+    font-size: clamp(1.8rem, 5vw, 3.1rem);
+    color: transparent;
+    font-size: 0;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+    background: var(--entry);
 }
 
 .project-card h2,
@@ -442,8 +1001,8 @@ details.toc,
 }
 
 .survey-filter select {
-    background: var(--field);
-    border-color: rgba(143, 174, 204, 0.28);
+    background: var(--surface-deep);
+    border-color: rgba(83, 226, 255, 0.28);
 }
 
 .survey-reset {
@@ -532,5 +1091,1447 @@ details.toc,
     .member-block {
         align-items: center !important;
         text-align: center;
+    }
+
+    body.mine-cursor-enabled,
+    body.mine-cursor-enabled .mine-home a,
+    body.mine-cursor-enabled .mine-home button {
+        cursor: auto;
+    }
+
+    .mine-cursor {
+        display: none;
+    }
+
+    .mine-hero,
+    .mine-section {
+        width: min(100vw - 20px, 100%);
+    }
+
+    .mine-hero {
+        min-height: auto;
+        padding-block: 4rem 5rem;
+    }
+
+    .mine-hero__grid,
+    .mine-team-grid,
+    .mine-story-grid,
+    .mine-project-grid,
+    .mine-gallery-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .mine-hero h1 {
+        max-width: none;
+        font-size: clamp(3.4rem, 17vw, 5.8rem);
+    }
+
+    .mine-section h2 {
+        max-width: none;
+        font-size: clamp(2.35rem, 12vw, 4rem);
+    }
+
+    .mine-hero__artifact {
+        order: -1;
+    }
+
+    .mine-pickaxe-ring {
+        width: min(68vw, 18rem);
+    }
+
+    .mine-scroll-cue {
+        left: 1rem;
+        right: auto;
+    }
+
+    .mine-member-card {
+        display: grid;
+        grid-template-columns: 96px 1fr;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .mine-member-card h3 {
+        margin-top: 0;
+    }
+
+    .mine-gallery-strip a {
+        min-height: 5.5rem;
+    }
+
+    .mine-rock {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .mine-actions {
+        flex-direction: column;
+    }
+
+    .mine-button {
+        width: 100%;
+    }
+
+    .mine-member-card {
+        grid-template-columns: 1fr;
+    }
+
+    .mine-member-card img {
+        max-width: 13rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .mine-button,
+    .mine-project-card,
+    .mine-gallery-strip a,
+    .mine-rock,
+    .reveal-on-scroll {
+        transition: none;
+    }
+
+    .reveal-on-scroll {
+        opacity: 1;
+        transform: none;
+    }
+
+    .mine-cursor {
+        display: none;
+    }
+}
+
+/* Five-stop shaft refinement */
+.mine-shaft {
+    --shaft-left: clamp(6rem, 15vw, 18rem);
+    --shaft-right: clamp(6rem, 15vw, 18rem);
+    --mine-progress: 0;
+    background:
+        linear-gradient(180deg,
+            #9bd6ff 0%,
+            #6ba87f 18%,
+            #262c36 39%,
+            #12101b 62%,
+            #060913 82%,
+            #020204 100%);
+}
+
+.mine-shaft::before {
+    opacity: calc(0.78 + (var(--mine-progress) * 0.18));
+}
+
+.shaft-layer {
+    min-height: calc(100svh - var(--header-height));
+    padding: clamp(4.5rem, 7vw, 7rem) max(1.25rem, var(--shaft-left));
+}
+
+.shaft-layer::after {
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.62), transparent 21%, transparent 79%, rgba(0, 0, 0, 0.68)),
+        linear-gradient(180deg, transparent 0 78%, rgba(0, 0, 0, 0.2)),
+        repeating-linear-gradient(160deg, rgba(255, 255, 255, 0.026) 0 1px, transparent 1px 42px);
+}
+
+.shaft-wall {
+    width: clamp(8rem, 17vw, 19rem);
+    opacity: 0.62;
+}
+
+.shaft-wall--left {
+    clip-path: polygon(0 0, 82% 0, 70% 20%, 86% 36%, 68% 58%, 84% 76%, 66% 100%, 0 100%);
+}
+
+.shaft-wall--right {
+    clip-path: polygon(18% 0, 100% 0, 100% 100%, 34% 100%, 16% 76%, 32% 58%, 14% 36%, 30% 20%);
+}
+
+.shaft-copy {
+    width: min(820px, 100%);
+}
+
+.shaft-copy h1 {
+    max-width: 12ch;
+    font-size: clamp(4rem, 10vw, 8.5rem);
+}
+
+.shaft-copy h2 {
+    max-width: 14ch;
+    font-size: clamp(3rem, 7.2vw, 6.2rem);
+}
+
+.shaft-copy p {
+    max-width: 34rem;
+    color: rgba(232, 245, 250, 0.74);
+}
+
+.shaft-layer--surface {
+    background:
+        linear-gradient(180deg, rgba(126, 202, 255, 0.68), rgba(112, 177, 158, 0.5) 64%, rgba(68, 114, 69, 0.35) 100%);
+}
+
+.shaft-layer--surface::after {
+    background:
+        linear-gradient(180deg, transparent 0 77%, rgba(54, 126, 72, 0.48) 77% 82%, rgba(58, 45, 32, 0.38) 82%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.46), transparent 20%, transparent 80%, rgba(0, 0, 0, 0.5));
+}
+
+.shaft-layer--dirt {
+    background:
+        radial-gradient(circle at 50% 36%, rgba(255, 231, 162, 0.11), transparent 17rem),
+        linear-gradient(180deg, rgba(79, 56, 36, 0.58), rgba(39, 34, 32, 0.8));
+}
+
+.shaft-layer--redstone {
+    background:
+        radial-gradient(circle at 50% 44%, rgba(255, 53, 83, 0.2), transparent 21rem),
+        linear-gradient(180deg, rgba(25, 24, 31, 0.9), rgba(12, 9, 15, 0.96));
+}
+
+.shaft-layer--lapis {
+    background:
+        radial-gradient(circle at 50% 42%, rgba(65, 119, 255, 0.2), transparent 22rem),
+        linear-gradient(180deg, rgba(10, 14, 27, 0.94), rgba(5, 8, 16, 0.98));
+}
+
+.shaft-layer--bedrock {
+    background:
+        radial-gradient(circle at 50% 36%, rgba(111, 243, 255, 0.19), transparent 20rem),
+        linear-gradient(180deg, #050812, #010101);
+}
+
+.shaft-visual--logo {
+    bottom: clamp(3rem, 8vw, 5.5rem);
+    width: clamp(6.5rem, 12vw, 10rem);
+    opacity: 0.82;
+}
+
+.mine-link-row {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    justify-content: center;
+    margin-top: 0.1rem;
+}
+
+.mine-actions {
+    justify-content: center;
+}
+
+.diamond-counter {
+    top: calc(var(--header-height) + 1rem);
+}
+
+.diamond-ore--one {
+    right: 21%;
+    bottom: 29%;
+}
+
+.diamond-ore--two {
+    left: 22%;
+    top: 34%;
+}
+
+.diamond-ore--three {
+    right: 24%;
+    top: 31%;
+}
+
+@media (min-width: 1200px) {
+    .shaft-copy {
+        transform: translateY(-1.5vh);
+    }
+}
+
+@media (max-width: 900px) {
+    .shaft-layer {
+        min-height: calc(100svh - var(--header-height));
+        padding-inline: 1.25rem;
+    }
+
+    .shaft-copy {
+        text-align: center;
+    }
+}
+
+/* Keep the landing logo pickaxe centered and non-obstructive. */
+.shaft-layer--surface .shaft-visual--logo {
+    top: 50%;
+    bottom: auto;
+    left: 50%;
+    z-index: 1;
+    width: clamp(7rem, 11vw, 10rem);
+    opacity: 0.72;
+    transform: translate(-50%, -50%) rotate(-12deg);
+}
+
+.shaft-layer--surface .shaft-copy {
+    z-index: 2;
+    transform: translateY(-3.5vh);
+}
+
+.shaft-layer--surface .shaft-copy p:not(.mine-kicker) {
+    margin-top: 1.45rem;
+}
+
+@media (max-width: 640px) {
+    .shaft-layer--surface .shaft-visual--logo {
+        top: 64%;
+        right: auto;
+        left: 50%;
+        width: 6.5rem;
+        transform: translate(-50%, -50%) rotate(-12deg);
+    }
+
+    .shaft-layer--surface .shaft-copy {
+        text-align: center;
+        transform: translateY(-5vh);
+    }
+}
+
+/* Mine shaft homepage v2 */
+.mine-shaft {
+    --shaft-left: 8vw;
+    --shaft-right: 8vw;
+    background:
+        linear-gradient(180deg,
+            #9ed6ff 0%,
+            #5f9e7b 8%,
+            #68442e 19%,
+            #303744 33%,
+            #161923 47%,
+            #11101a 61%,
+            #0b1020 75%,
+            #04070d 89%,
+            #020204 100%);
+}
+
+.mine-shaft::before {
+    background:
+        radial-gradient(circle at 50% 6%, rgba(255, 246, 198, 0.52), transparent 8rem),
+        radial-gradient(circle at 48% 58%, rgba(255, 75, 98, 0.12), transparent 14rem),
+        radial-gradient(circle at 48% 78%, rgba(88, 149, 255, 0.14), transparent 14rem),
+        radial-gradient(circle at 50% 88%, rgba(111, 243, 255, 0.2), transparent 13rem),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.54), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.58));
+}
+
+.shaft-layer {
+    position: relative;
+    display: grid;
+    min-height: 100svh;
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    padding: clamp(5rem, 8vw, 8rem) max(1.25rem, var(--shaft-left));
+}
+
+.shaft-layer::before,
+.shaft-layer::after {
+    position: absolute;
+    pointer-events: none;
+    content: "";
+}
+
+.shaft-layer::before {
+    inset: 0;
+    z-index: -3;
+    background:
+        radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.08), transparent 18rem),
+        linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.22));
+}
+
+.shaft-layer::after {
+    inset: 0;
+    z-index: -2;
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.7), transparent 22%, transparent 78%, rgba(0, 0, 0, 0.74)),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 34px);
+}
+
+.shaft-bg--sky {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 58%;
+    z-index: -4;
+    background:
+        radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.95), transparent 0.18rem),
+        radial-gradient(circle at 68% 22%, rgba(255, 255, 255, 0.75), transparent 0.14rem),
+        linear-gradient(180deg, rgba(126, 199, 255, 0.92), rgba(177, 224, 255, 0.22), transparent);
+    mask-image: linear-gradient(180deg, #000 0 46%, transparent);
+}
+
+.shaft-wall {
+    position: absolute;
+    top: -8%;
+    bottom: -8%;
+    z-index: -1;
+    width: clamp(7rem, 21vw, 24rem);
+    opacity: 0.9;
+    background:
+        radial-gradient(circle at 34% 22%, rgba(255, 255, 255, 0.08), transparent 0.55rem),
+        radial-gradient(circle at 62% 58%, rgba(255, 255, 255, 0.055), transparent 0.45rem),
+        repeating-linear-gradient(160deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 30px),
+        linear-gradient(180deg, rgba(77, 56, 42, 0.72), rgba(30, 34, 43, 0.94));
+    filter: blur(0.2px);
+}
+
+.shaft-wall--left {
+    left: 0;
+    clip-path: polygon(0 0, 74% 0, 58% 18%, 78% 34%, 50% 58%, 70% 78%, 48% 100%, 0 100%);
+}
+
+.shaft-wall--right {
+    right: 0;
+    clip-path: polygon(26% 0, 100% 0, 100% 100%, 52% 100%, 30% 78%, 50% 58%, 22% 34%, 42% 18%);
+}
+
+.shaft-wall--coal {
+    background:
+        radial-gradient(circle at 42% 28%, rgba(28, 30, 36, 0.95), transparent 1.1rem),
+        radial-gradient(circle at 66% 63%, rgba(28, 30, 36, 0.9), transparent 0.95rem),
+        linear-gradient(180deg, rgba(38, 42, 51, 0.96), rgba(14, 17, 24, 0.98));
+}
+
+.shaft-wall--redstone {
+    background:
+        radial-gradient(circle at 44% 30%, rgba(255, 56, 82, 0.48), transparent 0.8rem),
+        radial-gradient(circle at 66% 58%, rgba(255, 56, 82, 0.32), transparent 0.7rem),
+        linear-gradient(180deg, rgba(32, 30, 38, 0.98), rgba(15, 12, 19, 0.98));
+}
+
+.shaft-wall--gold {
+    background:
+        radial-gradient(circle at 46% 34%, rgba(255, 203, 86, 0.52), transparent 0.95rem),
+        radial-gradient(circle at 64% 68%, rgba(255, 203, 86, 0.34), transparent 0.75rem),
+        linear-gradient(180deg, rgba(35, 31, 27, 0.98), rgba(15, 13, 12, 0.98));
+}
+
+.shaft-wall--lapis {
+    background:
+        radial-gradient(circle at 42% 32%, rgba(75, 134, 255, 0.5), transparent 0.95rem),
+        radial-gradient(circle at 67% 70%, rgba(75, 134, 255, 0.32), transparent 0.8rem),
+        linear-gradient(180deg, rgba(25, 31, 48, 0.98), rgba(8, 12, 23, 0.98));
+}
+
+.shaft-wall--diamond {
+    background:
+        radial-gradient(circle at 45% 35%, rgba(111, 243, 255, 0.55), transparent 0.95rem),
+        radial-gradient(circle at 66% 68%, rgba(111, 243, 255, 0.4), transparent 0.78rem),
+        linear-gradient(180deg, rgba(16, 28, 38, 0.98), rgba(4, 8, 14, 0.98));
+}
+
+.shaft-copy {
+    position: relative;
+    z-index: 2;
+    width: min(760px, 100%);
+    margin-inline: auto;
+    text-align: center;
+}
+
+.shaft-copy h1,
+.shaft-copy h2 {
+    max-width: 12ch;
+    margin: 0 auto;
+    color: #f5fbff;
+    font-size: clamp(3rem, 9vw, 8rem);
+    line-height: 0.92;
+    letter-spacing: 0;
+    text-wrap: balance;
+}
+
+.shaft-copy h2 {
+    max-width: 15ch;
+    font-size: clamp(2.7rem, 7vw, 6.6rem);
+}
+
+.shaft-copy p {
+    max-width: 38rem;
+    margin: 1.1rem auto 0;
+    color: rgba(220, 236, 244, 0.78);
+    font-size: clamp(1rem, 1.55vw, 1.25rem);
+    line-height: 1.55;
+}
+
+.mine-text-link {
+    display: inline-flex;
+    margin-top: 1.15rem;
+    color: var(--ore-diamond);
+    font-family: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.mine-text-link:hover,
+.mine-text-link:focus-visible {
+    color: var(--retro-amber);
+}
+
+.shaft-visual--logo {
+    position: absolute;
+    bottom: 11%;
+    left: 50%;
+    z-index: 1;
+    width: clamp(8rem, 18vw, 15rem);
+    opacity: 0.9;
+    transform: translateX(-50%) rotate(-9deg);
+}
+
+.shaft-visual--logo img {
+    width: 100%;
+    filter: drop-shadow(0 0 28px rgba(111, 243, 255, 0.4));
+}
+
+.shaft-roots {
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 34%;
+    z-index: -1;
+    opacity: 0.58;
+    background:
+        linear-gradient(100deg, transparent 18%, rgba(59, 34, 21, 0.8) 18% 19%, transparent 19%),
+        linear-gradient(80deg, transparent 44%, rgba(59, 34, 21, 0.7) 44% 45%, transparent 45%),
+        linear-gradient(112deg, transparent 72%, rgba(59, 34, 21, 0.7) 72% 73%, transparent 73%);
+}
+
+.shaft-particles,
+.shaft-particles::before,
+.shaft-particles::after {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    content: "";
+    background:
+        radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.45), transparent 0.11rem),
+        radial-gradient(circle at 72% 30%, rgba(111, 243, 255, 0.42), transparent 0.12rem),
+        radial-gradient(circle at 48% 72%, rgba(255, 255, 255, 0.28), transparent 0.1rem);
+    animation: mine-drift 12s ease-in-out infinite alternate;
+}
+
+.shaft-particles::before {
+    transform: translateY(18%);
+    animation-duration: 16s;
+}
+
+.shaft-particles::after {
+    transform: translateY(-12%);
+    animation-duration: 20s;
+}
+
+.ore-vein {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.ore-vein::before,
+.ore-vein::after {
+    position: absolute;
+    width: clamp(5rem, 12vw, 10rem);
+    aspect-ratio: 1;
+    content: "";
+    border-radius: 38% 46% 34% 42%;
+    filter: blur(0.2px) drop-shadow(0 0 22px currentColor);
+    background:
+        radial-gradient(circle at 30% 28%, currentColor, transparent 0.45rem),
+        radial-gradient(circle at 54% 52%, currentColor, transparent 0.52rem),
+        radial-gradient(circle at 70% 32%, currentColor, transparent 0.38rem);
+}
+
+.ore-vein::before {
+    left: 9%;
+    top: 26%;
+}
+
+.ore-vein::after {
+    right: 10%;
+    bottom: 22%;
+    transform: scale(0.78) rotate(28deg);
+}
+
+.ore-vein--coal {
+    color: rgba(12, 13, 16, 0.9);
+}
+
+.ore-vein--redstone {
+    color: rgba(255, 66, 88, 0.76);
+}
+
+.ore-vein--gold {
+    color: rgba(255, 204, 83, 0.74);
+}
+
+.ore-vein--lapis {
+    color: rgba(86, 145, 255, 0.72);
+}
+
+.ore-vein--diamond {
+    color: rgba(111, 243, 255, 0.76);
+}
+
+.shaft-layer--surface {
+    background:
+        linear-gradient(180deg, rgba(122, 199, 255, 0.5), rgba(94, 151, 112, 0.35) 70%, rgba(73, 116, 66, 0.24));
+}
+
+.shaft-layer--surface::after {
+    background:
+        linear-gradient(180deg, transparent 0 68%, rgba(70, 124, 74, 0.5) 68% 72%, rgba(62, 38, 23, 0.42) 72%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.28), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.28));
+}
+
+.shaft-layer--dirt {
+    background:
+        radial-gradient(circle at 48% 30%, rgba(255, 231, 162, 0.1), transparent 18rem),
+        linear-gradient(180deg, rgba(94, 71, 42, 0.3), rgba(67, 42, 28, 0.74));
+}
+
+.shaft-layer--stone {
+    background: linear-gradient(180deg, rgba(54, 60, 68, 0.52), rgba(37, 42, 51, 0.8));
+}
+
+.shaft-layer--coal {
+    background: linear-gradient(180deg, rgba(31, 35, 42, 0.78), rgba(16, 18, 24, 0.9));
+}
+
+.shaft-layer--redstone {
+    background:
+        radial-gradient(circle at 50% 44%, rgba(255, 53, 83, 0.16), transparent 22rem),
+        linear-gradient(180deg, rgba(19, 18, 25, 0.92), rgba(14, 10, 16, 0.95));
+}
+
+.shaft-layer--gold {
+    background:
+        radial-gradient(circle at 50% 42%, rgba(255, 194, 74, 0.18), transparent 22rem),
+        linear-gradient(180deg, rgba(19, 16, 13, 0.95), rgba(12, 10, 9, 0.97));
+}
+
+.shaft-layer--lapis {
+    background:
+        radial-gradient(circle at 50% 42%, rgba(65, 119, 255, 0.18), transparent 22rem),
+        linear-gradient(180deg, rgba(11, 14, 25, 0.96), rgba(7, 10, 20, 0.98));
+}
+
+.shaft-layer--diamond {
+    background:
+        radial-gradient(circle at 50% 44%, rgba(111, 243, 255, 0.22), transparent 24rem),
+        linear-gradient(180deg, rgba(5, 10, 17, 0.98), rgba(2, 5, 9, 0.99));
+}
+
+.shaft-layer--bedrock {
+    background:
+        radial-gradient(circle at 50% 32%, rgba(111, 243, 255, 0.12), transparent 20rem),
+        linear-gradient(180deg, #030508, #010101);
+}
+
+.bedrock-grid {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(45deg, rgba(255, 255, 255, 0.06) 12%, transparent 12% 88%, rgba(255, 255, 255, 0.05) 88%),
+        linear-gradient(-45deg, rgba(255, 255, 255, 0.045) 12%, transparent 12% 88%, rgba(255, 255, 255, 0.04) 88%);
+    background-size: 8rem 8rem;
+    opacity: 0.35;
+}
+
+.shaft-depth {
+    position: fixed;
+    left: 1rem;
+    top: 50%;
+    z-index: 30;
+    display: grid;
+    gap: 0.55rem;
+    justify-items: center;
+    color: rgba(220, 236, 244, 0.55);
+    font-family: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+    font-size: 0.7rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.shaft-depth i {
+    display: block;
+    width: 1px;
+    height: 9rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(111, 243, 255, 0.28), rgba(255, 255, 255, 0.12));
+}
+
+.diamond-counter {
+    position: fixed;
+    top: calc(var(--header-height) + 0.8rem);
+    right: 1rem;
+    z-index: 40;
+    display: inline-flex;
+    gap: 0.42rem;
+    align-items: center;
+    min-width: 3.2rem;
+    justify-content: center;
+    padding: 0.48rem 0.65rem;
+    color: #dffcff;
+    font-family: "Chakra Petch", "Segoe UI", system-ui, sans-serif;
+    font-weight: 700;
+    border: 1px solid rgba(111, 243, 255, 0.25);
+    border-radius: 999px;
+    background: rgba(2, 7, 13, 0.58);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.22);
+}
+
+.diamond-counter__gem,
+.diamond-ore {
+    display: inline-block;
+    width: 0.9rem;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #dffcff 0 16%, #6ff3ff 16% 58%, #2aa8c8 58% 100%);
+    clip-path: polygon(50% 0, 100% 38%, 72% 100%, 28% 100%, 0 38%);
+    box-shadow: 0 0 18px rgba(111, 243, 255, 0.58);
+}
+
+.diamond-ore {
+    position: absolute;
+    z-index: 3;
+    width: 1.35rem;
+    padding: 0;
+    border: 0;
+    opacity: 0.72;
+    cursor: pointer;
+    transition: transform 180ms ease, opacity 180ms ease, filter 180ms ease;
+}
+
+.diamond-ore:hover,
+.diamond-ore:focus-visible {
+    opacity: 1;
+    filter: brightness(1.2);
+    transform: scale(1.18) rotate(8deg);
+}
+
+.diamond-ore.is-collected {
+    opacity: 0;
+    transform: scale(0.2) rotate(28deg);
+    pointer-events: none;
+}
+
+.diamond-ore--one {
+    right: 17%;
+    bottom: 24%;
+}
+
+.diamond-ore--two {
+    left: 19%;
+    top: 28%;
+}
+
+.diamond-ore--three {
+    right: 22%;
+    top: 34%;
+}
+
+.sparkle {
+    position: fixed;
+    z-index: 999;
+    width: 0.32rem;
+    aspect-ratio: 1;
+    pointer-events: none;
+    border-radius: 50%;
+    background: var(--ore-diamond);
+    box-shadow: 0 0 12px rgba(111, 243, 255, 0.8);
+    animation: sparkle-pop 520ms ease-out forwards;
+}
+
+body.mine-cursor-enabled .mine-cursor.is-pressing img {
+    animation: pickaxe-swing 180ms ease-out;
+}
+
+body.mine-cursor-enabled .mine-cursor.is-hovering img {
+    filter: drop-shadow(0 0 16px rgba(255, 209, 102, 0.6)) drop-shadow(0 9px 12px rgba(0, 0, 0, 0.34));
+}
+
+@keyframes mine-drift {
+    from {
+        transform: translate3d(0, -1rem, 0);
+    }
+    to {
+        transform: translate3d(0.7rem, 1rem, 0);
+    }
+}
+
+@keyframes pickaxe-swing {
+    0% {
+        transform: rotate(-28deg);
+    }
+    50% {
+        transform: rotate(-58deg) translateY(0.18rem);
+    }
+    100% {
+        transform: rotate(-28deg);
+    }
+}
+
+@keyframes sparkle-pop {
+    from {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate3d(var(--spark-x), var(--spark-y), 0) scale(0.3);
+    }
+}
+
+@media (max-width: 900px) {
+    .mine-shaft {
+        --shaft-left: 1.25rem;
+        --shaft-right: 1.25rem;
+    }
+
+    .shaft-wall {
+        width: 8rem;
+        opacity: 0.45;
+    }
+
+    .shaft-copy h1 {
+        font-size: clamp(3.2rem, 18vw, 6rem);
+    }
+
+    .shaft-copy h2 {
+        font-size: clamp(2.8rem, 14vw, 5.2rem);
+    }
+
+    .shaft-depth {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .shaft-layer {
+        min-height: 100svh;
+        padding-inline: 1rem;
+    }
+
+    .shaft-wall {
+        display: none;
+    }
+
+    .shaft-copy {
+        text-align: left;
+    }
+
+    .shaft-copy h1,
+    .shaft-copy h2,
+    .shaft-copy p {
+        margin-inline: 0;
+    }
+
+    .shaft-visual--logo {
+        left: auto;
+        right: 1rem;
+        bottom: 9%;
+        width: 7rem;
+        transform: rotate(-9deg);
+    }
+
+    .diamond-counter {
+        right: 0.65rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .shaft-particles,
+    .shaft-particles::before,
+    .shaft-particles::after,
+    body.mine-cursor-enabled .mine-cursor.is-pressing img,
+    .sparkle {
+        animation: none;
+    }
+}
+
+/* Unified landing-page theme */
+body,
+body.list {
+    color: var(--content);
+    background: var(--landing-background);
+    background-attachment: fixed;
+}
+
+body::before {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 52%),
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 5px);
+}
+
+.header {
+    background: rgba(54, 101, 92, 0.62);
+    border-bottom-color: rgba(223, 252, 255, 0.28);
+    box-shadow: 0 10px 36px rgba(35, 72, 65, 0.18);
+}
+
+.logo a,
+.menu a,
+.menu .active {
+    color: var(--primary);
+}
+
+.menu a:hover,
+.menu a:focus-visible,
+.menu .active {
+    background: rgba(223, 252, 255, 0.14);
+    border-color: rgba(223, 252, 255, 0.36);
+}
+
+.page-header,
+.post-header {
+    background:
+        radial-gradient(circle at 8% 0, rgba(223, 252, 255, 0.18), transparent 18rem),
+        linear-gradient(90deg, rgba(40, 82, 76, 0.34), rgba(40, 82, 76, 0.08));
+    border-bottom-color: rgba(223, 252, 255, 0.34);
+}
+
+.page-header::after,
+.post-header::after {
+    background: linear-gradient(90deg, var(--retro-cyan), rgba(223, 252, 255, 0.75), transparent);
+}
+
+.page-header h1,
+.post-title,
+.entry-header h2,
+.entry-header h2 a,
+.md-content h1,
+.md-content h2,
+.md-content h3,
+.md-content h4,
+.post-content strong {
+    color: var(--primary);
+}
+
+.post-description,
+.profile .profile_inner span,
+.entry-content,
+.entry-footer,
+.breadcrumbs,
+.post-meta,
+.footer {
+    color: var(--secondary);
+}
+
+.post-entry,
+.post-content,
+.post-tags a,
+.share-buttons,
+.paginav,
+details.toc,
+[data-theme="dark"] details.toc,
+.member-block,
+.project-card,
+.survey-dashboard,
+.photo-grid button {
+    background:
+        linear-gradient(145deg, rgba(47, 91, 84, 0.76), rgba(37, 76, 70, 0.62)),
+        repeating-linear-gradient(135deg, rgba(223, 252, 255, 0.045) 0 1px, transparent 1px 22px);
+    border-color: var(--border);
+    box-shadow: 0 18px 48px rgba(35, 72, 65, 0.2);
+}
+
+.post-entry::before {
+    background: linear-gradient(180deg, var(--retro-cyan), var(--retro-green));
+}
+
+.post-entry:hover,
+.post-entry:focus-within,
+.project-card:hover,
+.project-card:focus-visible,
+.photo-grid button:hover,
+.photo-grid button:focus-visible {
+    border-color: rgba(223, 252, 255, 0.62) !important;
+    box-shadow: 0 22px 56px rgba(35, 72, 65, 0.24), var(--retro-glow);
+}
+
+.md-content h2,
+.md-content h3 {
+    border-bottom-color: rgba(223, 252, 255, 0.26);
+}
+
+.post-content code {
+    color: var(--primary);
+    background: rgba(43, 83, 77, 0.6);
+    border-color: rgba(223, 252, 255, 0.28);
+}
+
+.md-content blockquote {
+    color: var(--secondary);
+    background: rgba(223, 252, 255, 0.1);
+    border-inline-start-color: var(--retro-cyan);
+}
+
+.md-content table th,
+.md-content table td {
+    color: var(--content);
+    background: rgba(43, 83, 77, 0.66);
+    border-color: rgba(223, 252, 255, 0.2);
+}
+
+.md-content table th {
+    color: var(--primary);
+    background: rgba(223, 252, 255, 0.16);
+}
+
+.member-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start !important;
+    gap: 1.1rem !important;
+}
+
+.member-block img {
+    flex: 0 0 auto;
+    object-position: center;
+    background: rgba(223, 252, 255, 0.12);
+    border-color: rgba(223, 252, 255, 0.4);
+}
+
+.member-block > div {
+    flex: 1;
+    text-align: left;
+}
+
+.member-block p {
+    margin-top: 0;
+    padding-top: 0.5em;
+}
+
+.member-block ul {
+    padding-left: 20px;
+}
+
+.member-block li::marker {
+    color: var(--retro-cyan);
+}
+
+.project-card__media {
+    color: transparent;
+    font-size: 0;
+    background: var(--entry);
+}
+
+.project-card span,
+.survey-eyebrow,
+.mine-kicker {
+    color: var(--retro-cyan);
+}
+
+.shaft-copy h1,
+.shaft-copy h2 {
+    color: var(--primary);
+    text-shadow: 0 0 24px rgba(49, 84, 77, 0.3);
+}
+
+.shaft-copy p {
+    color: rgba(237, 248, 250, 0.86);
+}
+
+.shaft-layer--surface .shaft-visual--logo {
+    width: clamp(8.4rem, 13.2vw, 12rem);
+}
+
+.mine-button--primary,
+.pagination a,
+.survey-reset {
+    color: var(--surface-deep);
+    background: linear-gradient(135deg, var(--retro-cyan), var(--retro-green));
+}
+
+.mine-button--ghost {
+    background: rgba(47, 91, 84, 0.54);
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 20px;
+}
+
+.photo-grid button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    aspect-ratio: 1;
+    cursor: zoom-in;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius);
+}
+
+.photo-grid img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 200ms ease;
+}
+
+.photo-grid button:hover img,
+.photo-grid button:focus-visible img {
+    transform: scale(1.05);
+}
+
+.photo-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    background: rgba(49, 84, 77, 0.9) !important;
+    backdrop-filter: blur(12px);
+}
+
+.photo-lightbox.active {
+    display: flex;
+}
+
+.photo-lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.footer {
+    background: rgba(54, 101, 92, 0.28);
+    border-top-color: rgba(223, 252, 255, 0.22);
+}
+
+@media (max-width: 640px) {
+    .shaft-layer--surface .shaft-visual--logo {
+        width: 7.8rem;
+    }
+
+    .member-block {
+        flex-direction: column;
+        align-items: center !important;
+        text-align: center;
+    }
+
+    .member-block > div {
+        text-align: center;
+    }
+}
+
+/* One full-page ore identity for each internal section */
+body.ore-page {
+    --page-accent: #54e893;
+    --page-accent-soft: #b8f6d3;
+    --page-chip: rgba(84, 232, 147, 0.58);
+    --page-glow: rgba(84, 232, 147, 0.2);
+    --page-stone-top: #274238;
+    --page-stone-bottom: #081711;
+    --page-panel: rgba(14, 40, 29, 0.8);
+    --page-panel-strong: rgba(10, 30, 21, 0.92);
+    --page-border: rgba(84, 232, 147, 0.34);
+    --retro-cyan: var(--page-accent);
+    --retro-green: var(--page-accent-soft);
+    --entry: var(--page-panel);
+    --border: var(--page-border);
+    --theme: var(--page-stone-bottom);
+    min-height: 100%;
+    background:
+        linear-gradient(135deg, transparent 0 39%, var(--page-chip) 39% 46%, transparent 46%) -7rem -4rem / 27rem 27rem,
+        linear-gradient(45deg, transparent 0 51%, var(--page-chip) 51% 58%, transparent 58%) 4rem 7rem / 35rem 35rem,
+        radial-gradient(circle at 13% 18%, var(--page-glow), transparent 28rem),
+        radial-gradient(circle at 86% 72%, var(--page-glow), transparent 32rem),
+        repeating-linear-gradient(160deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 38px),
+        linear-gradient(155deg, var(--page-stone-top), var(--page-stone-bottom));
+    background-attachment: fixed;
+}
+
+body.ore-page--members {
+    --page-accent: #c8d3dc;
+    --page-accent-soft: #f0f5f7;
+    --page-chip: rgba(5, 8, 11, 0.78);
+    --page-glow: rgba(2, 4, 6, 0.58);
+    --page-stone-top: #4a535c;
+    --page-stone-bottom: #11161b;
+    --page-panel: rgba(24, 29, 34, 0.84);
+    --page-panel-strong: rgba(14, 18, 22, 0.94);
+    --page-border: rgba(200, 211, 220, 0.34);
+}
+
+body.ore-page--project {
+    --page-accent: #6ff3ff;
+    --page-accent-soft: #dffcff;
+    --page-chip: rgba(111, 243, 255, 0.58);
+    --page-glow: rgba(111, 243, 255, 0.24);
+    --page-stone-top: #284a54;
+    --page-stone-bottom: #07151b;
+    --page-panel: rgba(12, 39, 47, 0.82);
+    --page-panel-strong: rgba(6, 27, 34, 0.94);
+    --page-border: rgba(111, 243, 255, 0.38);
+}
+
+body.ore-page--mini-projects {
+    --page-accent: #ffd166;
+    --page-accent-soft: #fff0bf;
+    --page-chip: rgba(255, 209, 102, 0.62);
+    --page-glow: rgba(255, 209, 102, 0.2);
+    --page-stone-top: #54472c;
+    --page-stone-bottom: #1b160b;
+    --page-panel: rgba(55, 44, 19, 0.82);
+    --page-panel-strong: rgba(38, 29, 10, 0.94);
+    --page-border: rgba(255, 209, 102, 0.4);
+}
+
+body.ore-page--logs {
+    --page-accent: #ff4d65;
+    --page-accent-soft: #ffc0c9;
+    --page-chip: rgba(255, 77, 101, 0.58);
+    --page-glow: rgba(255, 77, 101, 0.22);
+    --page-stone-top: #512d34;
+    --page-stone-bottom: #19090d;
+    --page-panel: rgba(54, 19, 27, 0.82);
+    --page-panel-strong: rgba(37, 10, 16, 0.94);
+    --page-border: rgba(255, 77, 101, 0.38);
+}
+
+body.ore-page--photos {
+    --page-accent: #69a7ff;
+    --page-accent-soft: #c4dbff;
+    --page-chip: rgba(105, 167, 255, 0.6);
+    --page-glow: rgba(105, 167, 255, 0.22);
+    --page-stone-top: #293d62;
+    --page-stone-bottom: #080f23;
+    --page-panel: rgba(15, 29, 59, 0.84);
+    --page-panel-strong: rgba(8, 19, 43, 0.94);
+    --page-border: rgba(105, 167, 255, 0.4);
+}
+
+.ore-page .header {
+    background: var(--page-panel-strong);
+    border-bottom-color: var(--page-border);
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.24);
+}
+
+.ore-page .menu a:hover,
+.ore-page .menu a:focus-visible,
+.ore-page .menu .active {
+    background: var(--page-glow);
+    border-color: var(--page-border);
+}
+
+.ore-page .page-header,
+.ore-page .post-header {
+    background:
+        radial-gradient(circle at 8% 0, var(--page-glow), transparent 18rem),
+        linear-gradient(90deg, var(--page-panel), transparent);
+    border-bottom-color: var(--page-border);
+}
+
+.ore-page .page-header::after,
+.ore-page .post-header::after,
+.ore-page .post-entry::before {
+    background: linear-gradient(90deg, var(--page-accent), var(--page-accent-soft), transparent);
+}
+
+.ore-page .post-entry,
+.ore-page .post-content,
+.ore-page .post-tags a,
+.ore-page .share-buttons,
+.ore-page .paginav,
+.ore-page details.toc,
+.ore-page .member-block,
+.ore-page .project-card,
+.ore-page .survey-dashboard,
+.ore-page .photo-grid button {
+    background:
+        linear-gradient(145deg, var(--page-panel), var(--page-panel-strong)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 22px);
+    border-color: var(--page-border);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
+}
+
+.ore-page .post-entry:hover,
+.ore-page .post-entry:focus-within,
+.ore-page .project-card:hover,
+.ore-page .project-card:focus-visible,
+.ore-page .photo-grid button:hover,
+.ore-page .photo-grid button:focus-visible {
+    border-color: var(--page-accent) !important;
+    box-shadow: 0 22px 56px rgba(0, 0, 0, 0.28), 0 0 26px var(--page-glow);
+}
+
+.ore-page .post-content code,
+.ore-page .md-content table th,
+.ore-page .md-content table td,
+.ore-page .member-block img {
+    background: var(--page-panel);
+    border-color: var(--page-border);
+}
+
+.ore-page .md-content table th {
+    background: var(--page-glow);
+}
+
+.ore-page .md-content blockquote {
+    background: var(--page-glow);
+    border-inline-start-color: var(--page-accent);
+}
+
+.ore-page .member-block li::marker,
+.ore-page .project-card span,
+.ore-page .survey-eyebrow {
+    color: var(--page-accent);
+}
+
+.ore-page .mine-button--primary,
+.ore-page .pagination a,
+.ore-page .survey-reset {
+    color: var(--page-stone-bottom);
+    background: linear-gradient(135deg, var(--page-accent), var(--page-accent-soft));
+}
+
+.ore-page .project-card__media {
+    color: transparent;
+    font-size: 0;
+    background: var(--entry);
+}
+
+.ore-page .photo-lightbox {
+    background: var(--page-panel-strong) !important;
+}
+
+.ore-page .footer {
+    background: var(--page-panel-strong);
+    border-top-color: var(--page-border);
+}
+
+
+/* Use the landing page's surface layer as the shared internal-page background. */
+body.ore-page {
+    --page-panel: rgba(39, 67, 57, 0.78);
+    --page-panel-strong: rgba(27, 49, 42, 0.92);
+    --page-border: rgba(223, 252, 255, 0.32);
+    --page-glow: rgba(111, 243, 255, 0.16);
+    position: relative;
+    overflow-x: hidden;
+    isolation: isolate;
+    background: #3a291f;
+}
+
+.ore-page > .header,
+.ore-page > .main,
+.ore-page > .footer {
+    position: relative;
+    z-index: 2;
+}
+
+.ore-page > .header {
+    z-index: 20;
+}
+
+.surface-page-scene,
+.surface-page-scene span {
+    position: fixed;
+    pointer-events: none;
+}
+
+.surface-page-scene {
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.surface-page-scene__field {
+    inset: var(--header-height) 0 0;
+    background:
+        radial-gradient(circle at 16% 14%, rgba(255, 255, 255, 0.92) 0 0.09rem, transparent 0.15rem),
+        radial-gradient(circle at 68% 18%, rgba(255, 255, 255, 0.7) 0 0.07rem, transparent 0.13rem),
+        radial-gradient(ellipse at 50% 4%, rgba(223, 252, 255, 0.26), transparent 28rem),
+        linear-gradient(180deg,
+            #7fc7f7 0%,
+            #8fccec 24%,
+            #73aaa0 49%,
+            #557859 68%,
+            #4f7a51 68%,
+            #4f7a51 74%,
+            #59472f 74%,
+            #463522 84%,
+            #34251c 100%);
+}
+
+.surface-page-scene__field::after {
+    position: absolute;
+    inset: 74% 0 0;
+    content: "";
+    opacity: 0.26;
+    background:
+        repeating-linear-gradient(164deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 38px),
+        linear-gradient(180deg, rgba(91, 67, 43, 0.18), rgba(31, 22, 17, 0.28));
+}
+
+.surface-page-scene__wall {
+    top: var(--header-height);
+    bottom: 0;
+    z-index: 1;
+    width: clamp(8rem, 20vw, 23rem);
+    opacity: 0.92;
+    background:
+        radial-gradient(circle at 34% 22%, rgba(255, 255, 255, 0.08), transparent 0.55rem),
+        radial-gradient(circle at 62% 58%, rgba(255, 255, 255, 0.055), transparent 0.45rem),
+        repeating-linear-gradient(160deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 30px),
+        linear-gradient(180deg, rgba(70, 78, 88, 0.96), rgba(43, 45, 48, 0.98) 68%, rgba(29, 29, 31, 0.99));
+    filter: drop-shadow(0 0 2rem rgba(0, 0, 0, 0.24));
+}
+
+.surface-page-scene__wall--left {
+    left: 0;
+    clip-path: polygon(0 0, 74% 0, 58% 18%, 78% 34%, 50% 58%, 70% 78%, 48% 100%, 0 100%);
+}
+
+.surface-page-scene__wall--right {
+    right: 0;
+    clip-path: polygon(26% 0, 100% 0, 100% 100%, 52% 100%, 30% 78%, 50% 58%, 22% 34%, 42% 18%);
+}
+
+.surface-page-scene__dust {
+    inset: var(--header-height) 0 0;
+    z-index: 2;
+    opacity: 0.38;
+    background:
+        radial-gradient(circle at 7% 18%, rgba(255, 255, 255, 0.45) 0 0.08rem, transparent 0.14rem),
+        radial-gradient(circle at 74% 26%, rgba(223, 252, 255, 0.42) 0 0.07rem, transparent 0.13rem),
+        radial-gradient(circle at 48% 63%, rgba(255, 255, 255, 0.26) 0 0.06rem, transparent 0.11rem),
+        radial-gradient(circle at 92% 76%, rgba(255, 255, 255, 0.2) 0 0.08rem, transparent 0.14rem);
+    animation: mine-drift 16s ease-in-out infinite alternate;
+}
+
+.ore-page .header {
+    background: rgba(47, 91, 78, 0.9);
+    border-bottom-color: rgba(223, 252, 255, 0.26);
+}
+
+.ore-page .footer {
+    background: rgba(35, 67, 58, 0.88);
+    border-top-color: rgba(223, 252, 255, 0.22);
+}
+
+@media (max-width: 700px) {
+    .surface-page-scene__wall {
+        width: 7rem;
+        opacity: 0.78;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .surface-page-scene__dust {
+        animation: none;
     }
 }

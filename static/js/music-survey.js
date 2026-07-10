@@ -4,7 +4,7 @@
 
   const script = document.currentScript || Array.from(document.scripts).find((item) => item.src.includes("music-survey.js"));
   const dataUrl = root.dataset.surveySrc || new URL("../data/music-survey.json", script ? script.src : window.location.href).href;
-  const palette = ["#e63b7a", "#ffb000", "#00a88f", "#3d7eff", "#ff6b2f", "#7c4dff", "#26a65b", "#d048d5", "#0087a8", "#f05a28"];
+  const palette = ["#6ff3ff", "#8ee8df", "#a8e0c3", "#9ed6ff", "#dffcff", "#72cbbb", "#8fc9d8", "#b9e7d2", "#67b6ae", "#c9f4e4"];
   const state = {
     gender: "All",
     grade: "All",
@@ -165,7 +165,7 @@
             start = end;
             return segment;
           }).join(", ")
-        : "#dce5ef 0deg 360deg";
+        : "#dcecf4 0deg 360deg";
 
       const block = document.createElement("div");
       block.className = "survey-donut";

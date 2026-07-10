@@ -1,6 +1,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 {{ if or .Params.math .Site.Params.math }}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
@@ -30,4 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
 {{ if eq .Section "mini-projects" }}
   <link rel="stylesheet" href="{{ "css/music-survey.css" | relURL }}">
   <script defer src="{{ "js/music-survey.js" | relURL }}"></script>
+{{ end }}
+
+{{ if .IsHome }}
+  <script defer src="{{ "js/homepage.js" | relURL }}"></script>
 {{ end }}

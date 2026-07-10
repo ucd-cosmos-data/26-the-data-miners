@@ -1,0 +1,85 @@
+{{- define "main" }}
+<div class="mine-home mine-shaft" id="mine-home">
+  <div class="mine-cursor" aria-hidden="true">
+    <img src="{{ "diamond-pickaxe-retro.png" | relURL }}" alt="">
+  </div>
+  <div class="diamond-counter" aria-live="polite">
+    <span class="diamond-counter__gem" aria-hidden="true"></span>
+    <span data-diamond-count>0</span>
+  </div>
+
+
+  <section class="shaft-layer shaft-layer--surface" aria-labelledby="surface-title" data-layer="surface">
+    <div class="shaft-bg shaft-bg--sky" aria-hidden="true"></div>
+    <div class="shaft-wall shaft-wall--left" data-parallax="-0.035" aria-hidden="true"></div>
+    <div class="shaft-wall shaft-wall--right" data-parallax="0.035" aria-hidden="true"></div>
+    <div class="shaft-visual shaft-visual--logo reveal-on-scroll" aria-hidden="true">
+      <img src="{{ "diamond-pickaxe-retro.png" | relURL }}" alt="">
+    </div>
+    <div class="shaft-copy reveal-on-scroll">
+      <p class="mine-kicker"></p>
+      <h1 id="surface-title">The Data Miners</h1>
+      <p>Four students from the 2026 UC Davis COSMOS Cluster 11 program who are passionate about Data Science </p>
+    </div>
+    <a class="mine-scroll-cue" href="#team" aria-label="Scroll down">
+      <span>Dig down</span>
+    </a>
+  </section>
+  <section class="shaft-layer shaft-layer--dirt" id="team" aria-labelledby="team-title" data-layer="dirt">
+    <div class="shaft-wall shaft-wall--left" data-parallax="-0.04" aria-hidden="true"></div>
+    <div class="shaft-wall shaft-wall--right" data-parallax="0.04" aria-hidden="true"></div>
+    <div class="shaft-roots" aria-hidden="true"></div>
+    <button class="diamond-ore diamond-ore--one" type="button" aria-label="Collect hidden diamond ore"></button>
+    <div class="shaft-copy reveal-on-scroll">
+      <p class="mine-kicker"></p>
+      <h2 id="team-title">We are a team of four from Cluster 11.</h2>
+      <p>We are learning data science by making things, fixing messy parts, and explaining what we find.</p>
+      <a class="mine-text-link" href="{{ "members/" | relURL }}">Members</a>
+    </div>
+  </section>
+
+  <section class="shaft-layer shaft-layer--redstone" id="work" aria-labelledby="work-title" data-layer="redstone">
+    <div class="shaft-wall shaft-wall--left shaft-wall--redstone" data-parallax="-0.055" aria-hidden="true"></div>
+    <div class="shaft-wall shaft-wall--right shaft-wall--redstone" data-parallax="0.055" aria-hidden="true"></div>
+    <div class="ore-vein ore-vein--redstone" aria-hidden="true"></div>
+    <div class="shaft-particles" aria-hidden="true"></div>
+    <button class="diamond-ore diamond-ore--two" type="button" aria-label="Collect hidden diamond ore"></button>
+    <div class="shaft-copy reveal-on-scroll">
+      <p class="mine-kicker"></p>
+      <h2 id="work-title">Our work is meant to be clicked around.</h2>
+      <p>Surveys, dashboards, and project notes help us see what the data is actually saying.</p>
+      <a class="mine-text-link" href="{{ "mini-projects/music-survey/" | relURL }}">Mini Project 1</a>
+    </div>
+  </section>
+
+  <section class="shaft-layer shaft-layer--lapis" id="records" aria-labelledby="records-title" data-layer="lapis">
+    <div class="shaft-wall shaft-wall--left shaft-wall--lapis" data-parallax="-0.045" aria-hidden="true"></div>
+    <div class="shaft-wall shaft-wall--right shaft-wall--lapis" data-parallax="0.045" aria-hidden="true"></div>
+    <div class="ore-vein ore-vein--lapis" aria-hidden="true"></div>
+    <div class="shaft-copy reveal-on-scroll">
+      <p class="mine-kicker"></p>
+      <h2 id="records-title">Some of the best proof is visual.</h2>
+      <p>Photos, experiments, logs, and small updates show how the work changed while we were building it.</p>
+      <div class="mine-link-row">
+        <a class="mine-text-link" href="{{ "photos/" | relURL }}">Photos</a>
+        <a class="mine-text-link" href="{{ "logs/" | relURL }}">Logs</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="shaft-layer shaft-layer--bedrock" id="bedrock" aria-labelledby="bedrock-title" data-layer="bedrock">
+    <div class="bedrock-grid" aria-hidden="true"></div>
+    <div class="ore-vein ore-vein--diamond" aria-hidden="true"></div>
+    <button class="diamond-ore diamond-ore--three" type="button" aria-label="Collect hidden diamond ore"></button>
+    <div class="shaft-copy reveal-on-scroll">
+      <p class="mine-kicker"></p>
+      <h2 id="bedrock-title">Welcome to the Data Miners Website!</h2>
+      <p>Check out our work throughout this website!</p>
+      <div class="mine-actions">
+        <a class="mine-button mine-button--primary" href="https://github.com/ucd-cosmos-data/26-the-data-miners">Website GitHub</a>
+        <a class="mine-button mine-button--ghost" href="https://github.com/ucd-cosmos-data/26-the-data-miners-analysis">Analysis GitHub</a>
+      </div>
+    </div>
+  </section>
+</div>
+{{- end }}
