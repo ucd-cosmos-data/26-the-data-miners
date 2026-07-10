@@ -935,8 +935,9 @@ details.toc,
 .project-card__media {
     min-height: clamp(150px, 28vw, 250px);
     padding: 1rem;
-    color: var(--primary);
     font-size: clamp(1.8rem, 5vw, 3.1rem);
+    color: transparent;
+    font-size: 0;
     font-weight: 700;
     line-height: 1;
     text-align: center;
@@ -2111,7 +2112,8 @@ details.toc,
 }
 
 .project-card__media {
-    color: var(--primary);
+    color: transparent;
+    font-size: 0;
     background: var(--entry);
 }
 
@@ -2392,7 +2394,8 @@ body.ore-page--photos {
 }
 
 .ore-page .project-card__media {
-    color: var(--primary);
+    color: transparent;
+    font-size: 0;
     background: var(--entry);
 }
 
