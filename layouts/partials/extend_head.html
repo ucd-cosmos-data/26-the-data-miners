@@ -31,3 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
   <link rel="stylesheet" href="{{ "css/music-survey.css" | relURL }}">
   <script defer src="{{ "js/music-survey.js" | relURL }}"></script>
 {{ end }}
+
+{{ if .IsHome }}
+  <script defer src="{{ "js/homepage.js" | relURL }}"></script>
+{{ end }}
