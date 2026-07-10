@@ -48,6 +48,10 @@
   text-decoration: none;
 }
 
+.project-card--health .project-card__media {
+  background: linear-gradient(135deg, #7f1d1d, #0f766e);
+}
+
 .survey-dashboard {
   --ink: #eaf2fb;
   --muted: #9eb0c5;
@@ -464,5 +468,154 @@
 
   .survey-donut__ring {
     width: 82px;
+  }
+}
+
+.disease-map-dashboard {
+  --ink: #17212b;
+  --muted: #5f6f82;
+  --line: rgba(23, 33, 43, 0.14);
+  --panel: rgba(255, 255, 255, 0.94);
+  --shadow: 0 18px 50px rgba(21, 34, 51, 0.12);
+  width: min(1120px, calc(100vw - 32px));
+  margin: 2rem 0 2.5rem 50%;
+  padding: clamp(1.1rem, 3vw, 2rem);
+  transform: translateX(-50%);
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(255, 248, 238, 0.96), rgba(238, 251, 249, 0.96) 52%, rgba(244, 247, 251, 0.96)),
+    repeating-linear-gradient(90deg, rgba(23, 33, 43, 0.04) 0 1px, transparent 1px 28px);
+  border-block: 1px solid var(--line);
+}
+
+.disease-map-dashboard *,
+.disease-map-dashboard *::before,
+.disease-map-dashboard *::after {
+  box-sizing: border-box;
+}
+
+.disease-map-dashboard__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: end;
+  margin-bottom: 1.25rem;
+}
+
+.disease-map-dashboard h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.disease-map-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.disease-map-figure {
+  margin: 1rem 0 0;
+  padding: clamp(1rem, 2.4vw, 1.35rem);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.disease-map-figure__header {
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.disease-map-figure h4 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  letter-spacing: 0;
+}
+
+.disease-map-figure p {
+  margin: 0.3rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.disease-map-figure iframe {
+  display: block;
+  width: 100%;
+  height: min(680px, 78vh);
+  min-height: 520px;
+  background: #f7fafc;
+  border: 1px solid rgba(23, 33, 43, 0.12);
+  border-radius: 8px;
+}
+
+.disease-map-figure figcaption {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.disease-map-button {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.65rem;
+  padding: 0 1rem;
+  color: #ffffff !important;
+  font-weight: 800;
+  text-decoration: none !important;
+  background: #a3291c;
+  border-radius: 8px;
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.disease-map-button:hover,
+.disease-map-button:focus-visible {
+  background: #7f1d1d;
+  transform: translateY(-1px);
+}
+
+.disease-map-button--teal {
+  background: #0f766e;
+}
+
+.disease-map-button--teal:hover,
+.disease-map-button--teal:focus-visible {
+  background: #115e59;
+}
+
+@media (max-width: 880px) {
+  .disease-map-dashboard__header,
+  .disease-map-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .disease-map-figure__header {
+    display: grid;
+  }
+
+  .disease-map-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .disease-map-dashboard {
+    width: calc(100vw - 20px);
+    padding-inline: 0.8rem;
+  }
+
+  .disease-map-figure iframe {
+    height: 560px;
+    min-height: 460px;
   }
 }
