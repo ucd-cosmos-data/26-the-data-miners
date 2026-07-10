@@ -49,7 +49,7 @@
 }
 
 .project-card--health .project-card__media {
-  background: linear-gradient(135deg, #7f1d1d, #0f766e);
+  background: var(--entry);
 }
 
 .survey-dashboard {
