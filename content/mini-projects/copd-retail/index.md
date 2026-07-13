@@ -16,6 +16,13 @@ This mini project compares two county-level California datasets: adult COPD prev
 - Retail measure: **percentage of surveyed retailers with electronic smoking devices available, 2016**
 - Shared join key: **county FIPS code**
 
+## Scatterplot
+
+<figure id="copd-retail-scatterplot" class="disease-map-figure">
+<iframe src="fig.html" title="Scatterplot comparing California county COPD prevalence and retail electronic smoking device availability" loading="lazy"></iframe>
+<figcaption>Fig 3. County-level COPD prevalence compared with retail electronic smoking device availability.</figcaption>
+</figure>
+
 ## Interactive Choropleth Maps
 
 <section class="disease-map-dashboard" aria-label="California COPD and retail ESD choropleth maps">
