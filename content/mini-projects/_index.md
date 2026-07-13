@@ -11,7 +11,6 @@ title: "Mini Projects"
 </a>
 
 <a class="project-card project-card--health" href="copd-retail/">
-<div class="project-card__media" aria-hidden="true">Mini Project 2: County Health Maps</div>
 <div class="project-card__body">
 <h2>Mini Project #2: California COPD and Retail ESD Availability</h2>
 <p>We mapped county-level COPD prevalence and electronic smoking device retail availability with interactive California choropleths.</p>

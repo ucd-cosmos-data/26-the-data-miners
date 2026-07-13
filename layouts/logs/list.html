@@ -1,0 +1,40 @@
+{{- define "main" }}
+<header class="page-header logs-page-header">
+  <p class="logs-page-header__eyebrow">Field notes</p>
+  <h1>{{ .Title }}</h1>
+  <p class="logs-page-header__intro">Follow our progress one week at a time.</p>
+</header>
+
+<div class="weekly-log-list">
+  {{- range .RegularPages.ByDate.Reverse }}
+  <article class="weekly-log-entry">
+    <a class="weekly-log-card" href="{{ .RelPermalink }}" aria-label="Read {{ .Title }}">
+      <header class="weekly-log-card__header">
+        <div>
+          <p class="weekly-log-card__kicker">Weekly log</p>
+          <h2>{{ .Title }}</h2>
+          {{- with .Description }}<p>{{ . }}</p>{{- end }}
+        </div>
+        <span class="weekly-log-card__arrow" aria-hidden="true">&#8599;</span>
+      </header>
+
+      {{- with index .Params.days 0 }}
+      <div class="weekly-log-card__preview">
+        <h3>{{ .name }} <time datetime="{{ .datetime }}">{{ .date }}</time></h3>
+        <p>{{ .text | truncate 180 }}</p>
+      </div>
+      {{- end }}
+
+      <footer class="weekly-log-card__footer">
+        <span>{{ .Params.week }}</span>
+        <span aria-hidden="true">&bull;</span>
+        <span>{{ len .Params.days }} daily entries</span>
+        <span aria-hidden="true">&bull;</span>
+        <span>2 min read</span>
+        <strong>Open log <span aria-hidden="true">&#8594;</span></strong>
+      </footer>
+    </a>
+  </article>
+  {{- end }}
+</div>
+{{- end }}

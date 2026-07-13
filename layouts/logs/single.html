@@ -1,0 +1,22 @@
+{{- define "main" }}
+<article class="weekly-log-full">
+  <header class="post-header weekly-log-full__header">
+    <p class="weekly-log-card__kicker">Weekly log</p>
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- with .Description }}<p class="post-description">{{ . }}</p>{{- end }}
+    <p class="weekly-log-full__meta">{{ .Params.week }} &bull; {{ len .Params.days }} daily entries</p>
+  </header>
+
+  <div class="weekly-log-full__days">
+    {{- range .Params.days }}
+    <section class="weekly-log-full__day">
+      <p class="weekly-log-full__date"><time datetime="{{ .datetime }}">{{ .date }}</time></p>
+      <h2>{{ .name }}</h2>
+      <p>{{ .text }}</p>
+    </section>
+    {{- end }}
+  </div>
+
+  <a class="weekly-log-back" href="{{ "logs/" | relURL }}">&#8592; Back to all logs</a>
+</article>
+{{- end }}
