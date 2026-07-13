@@ -25,7 +25,10 @@ This mini project compares two county-level California datasets: adult COPD prev
 
 ## LMplot
 
-<img src="/mini-projects/copd-retail/fig_three.png" alt="Linear regression plot comparing California county COPD prevalence and retail electronic smoking device availability" loading="lazy">
+<figure>
+<img src="fig_three.png" alt="Linear regression plot comparing California county COPD prevalence and retail electronic smoking device availability" style="display: block; width: 100%; height: auto;" loading="lazy">
+<figcaption>Fig 4. Linear regression plot comparing county-level COPD prevalence with retail electronic smoking device availability.</figcaption>
+</figure>
 
 ## Interactive Choropleth Maps
 
