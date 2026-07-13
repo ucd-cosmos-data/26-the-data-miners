@@ -90,7 +90,7 @@ Retail availability ranges from **0.0%** to **89.0%**, with an average of about 
 
 ## Comparison
 
-The two maps do not show a strong county-level relationship. Some counties have high retail ESD availability but moderate COPD prevalence, such as **San Luis Obispo** and **Placer**. Other counties have high COPD prevalence without especially high retail availability, such as **Trinity**. The correlation between the two mapped variables is about **-0.02**, which is essentially no linear relationship in this dataset.
+The two maps do not show a strong county-level relationship. Some counties have high retail ESD availability but moderate COPD prevalence, such as **San Luis Obispo** and **Placer**. Other counties have high COPD prevalence without especially high retail availability, such as **Trinity**. The correlation between the two mapped variables is slightly positive but around zero, which is essentially no linear relationship in this dataset.
 
 This comparison should be interpreted carefully because the datasets come from different years: retail availability is from **2016**, while COPD prevalence is from **2023**. Also, retail availability does not directly measure how many people smoke or vape; it only measures whether stores had electronic smoking devices available.
 
