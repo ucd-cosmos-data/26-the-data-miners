@@ -5,32 +5,10 @@
   }
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  var finePointer = window.matchMedia("(pointer: fine)");
-  var cursor = document.querySelector(".mine-cursor");
   var countLabel = document.querySelector("[data-diamond-count]");
-  var cursorX = -100;
-  var cursorY = -100;
-  var targetX = -100;
-  var targetY = -100;
   var count = 0;
   var respawnDelayMin = 4000;
   var respawnDelayMax = 12000;
-
-  function enableCursor() {
-    return cursor && finePointer.matches && !reduceMotion.matches;
-  }
-
-  function moveCursor() {
-    if (!enableCursor()) {
-      document.body.classList.remove("mine-cursor-enabled");
-      return;
-    }
-
-    cursorX += (targetX - cursorX) * 0.2;
-    cursorY += (targetY - cursorY) * 0.2;
-    cursor.style.transform = "translate3d(" + (cursorX - 14) + "px, " + (cursorY - 14) + "px, 0)";
-    requestAnimationFrame(moveCursor);
-  }
 
   function burstSparkles(x, y) {
     if (reduceMotion.matches) {
@@ -56,36 +34,6 @@
   function getRespawnDelay() {
     return respawnDelayMin + Math.random() * (respawnDelayMax - respawnDelayMin);
   }
-
-  if (enableCursor()) {
-    document.body.classList.add("mine-cursor-enabled");
-    window.addEventListener("mousemove", function (event) {
-      targetX = event.clientX;
-      targetY = event.clientY;
-    }, { passive: true });
-    window.addEventListener("mousedown", function () {
-      cursor.classList.add("is-pressing");
-    });
-    window.addEventListener("mouseup", function () {
-      window.setTimeout(function () {
-        cursor.classList.remove("is-pressing");
-      }, 160);
-    });
-    requestAnimationFrame(moveCursor);
-  }
-
-  document.querySelectorAll("a, button, .diamond-ore").forEach(function (item) {
-    item.addEventListener("mouseenter", function () {
-      if (cursor) {
-        cursor.classList.add("is-hovering");
-      }
-    });
-    item.addEventListener("mouseleave", function () {
-      if (cursor) {
-        cursor.classList.remove("is-hovering");
-      }
-    });
-  });
 
   var revealItems = Array.prototype.slice.call(document.querySelectorAll(".reveal-on-scroll"));
   if ("IntersectionObserver" in window && !reduceMotion.matches) {

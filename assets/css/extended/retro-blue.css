@@ -56,8 +56,7 @@ body {
 }
 
 body.mine-cursor-enabled,
-body.mine-cursor-enabled .mine-home a,
-body.mine-cursor-enabled .mine-home button {
+body.mine-cursor-enabled * {
     cursor: none;
 }
 

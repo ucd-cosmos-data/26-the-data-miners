@@ -27,6 +27,9 @@
     {{- $bodyClasses = $bodyClasses | append "ore-page" (printf "ore-page--%s" ($section | urlize)) }}
 {{- end }}
 <body class="{{ delimit $bodyClasses " " }}" id="top">
+    <div class="mine-cursor" aria-hidden="true">
+        <img src="{{ "diamond-pickaxe-retro.png" | relURL }}" alt="">
+    </div>
     {{- if not .IsHome }}
     <div class="surface-page-scene" aria-hidden="true">
         <span class="surface-page-scene__field"></span>
