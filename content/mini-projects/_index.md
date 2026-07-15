@@ -17,3 +17,11 @@ title: "Mini Projects"
 <span>View project →</span>
 </div>
 </a>
+
+<a class="project-card project-card--housing" href="california-housing-analysis/">
+<div class="project-card__body">
+<h2>Mini Project #3: California Housing Analysis</h2>
+<p>We used K-means clustering to identify four California real-estate market regions based on longitude, latitude, and median house value.</p>
+<span>View project →</span>
+</div>
+</a>
