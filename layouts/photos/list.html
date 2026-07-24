@@ -9,52 +9,85 @@
 {{- if .Content }}
 <div class="post-content md-content">{{ .Content }}</div>
 {{- end }}
-{{- $exts := slice "jpg" "jpeg" "png" "gif" "webp" }}
-{{- $entries := os.ReadDir "static/photos" }}
-{{- $images := slice }}
-{{- range $entries }}
-  {{- if not .IsDir }}
-    {{- $ext := path.Ext .Name | strings.TrimPrefix "." | lower }}
-    {{- if in $exts $ext }}
-      {{- $images = $images | append .Name }}
-    {{- end }}
-  {{- end }}
-{{- end }}
-{{- if $images }}
-<div class="photo-grid">
-  {{- range sort $images }}
-  <button type="button" data-full="{{ (printf "photos/%s" .) | absURL }}">
-    <img src="{{ (printf "photos/%s" .) | absURL }}" alt="{{ . }}" loading="lazy">
-  </button>
+{{- with .Params.gallery }}
+<div class="photo-story-intro" aria-label="Gallery introduction">
+  <p class="photo-story-intro__eyebrow">Beyond the classroom</p>
+  <p>Our COSMOS experience included quiet mornings on campus, group activities, and field trips around the Bay Area. Here are a few moments from those adventures.</p>
+  <span>{{ len . }} memories</span>
+</div>
+
+<div class="photo-grid" aria-label="COSMOS photo gallery">
+  {{- range . }}
+  <figure class="photo-card{{ if .featured }} photo-card--featured{{ end }}">
+    <button
+      class="photo-card__media"
+      type="button"
+      data-full="{{ .src | relURL }}"
+      data-alt="{{ .alt }}"
+      data-title="{{ .title }}"
+      data-caption="{{ .caption }}"
+      aria-label="Open larger view of {{ .title }}">
+      <img src="{{ .src | relURL }}" alt="{{ .alt }}" loading="lazy" decoding="async">
+      <span class="photo-card__view" aria-hidden="true">View photo</span>
+    </button>
+    <figcaption class="photo-card__caption">
+      <span class="photo-card__place">{{ .place }}</span>
+      <h2>{{ .title }}</h2>
+      <p>{{ .caption }}</p>
+    </figcaption>
+  </figure>
   {{- end }}
 </div>
-<div class="photo-lightbox" id="photo-lightbox">
-  <img id="photo-lightbox-img" src="" alt="">
+
+<div class="photo-lightbox" id="photo-lightbox" role="dialog" aria-modal="true" aria-labelledby="photo-lightbox-title" hidden>
+  <div class="photo-lightbox__dialog">
+    <button class="photo-lightbox__close" id="photo-lightbox-close" type="button" aria-label="Close enlarged photo">×</button>
+    <img id="photo-lightbox-img" src="" alt="">
+    <div class="photo-lightbox__caption">
+      <h2 id="photo-lightbox-title"></h2>
+      <p id="photo-lightbox-copy"></p>
+    </div>
+  </div>
 </div>
+
 <script>
 (function () {
   var lightbox = document.getElementById("photo-lightbox");
   var lightboxImg = document.getElementById("photo-lightbox-img");
-  document.querySelectorAll(".photo-grid button").forEach(function (btn) {
+  var lightboxTitle = document.getElementById("photo-lightbox-title");
+  var lightboxCopy = document.getElementById("photo-lightbox-copy");
+  var closeButton = document.getElementById("photo-lightbox-close");
+  var previousFocus;
+
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+    lightbox.hidden = true;
+    lightboxImg.src = "";
+    if (previousFocus) previousFocus.focus();
+  }
+
+  document.querySelectorAll(".photo-card__media").forEach(function (btn) {
     btn.addEventListener("click", function () {
+      previousFocus = btn;
       lightboxImg.src = btn.getAttribute("data-full");
-      lightboxImg.alt = btn.querySelector("img").alt;
+      lightboxImg.alt = btn.getAttribute("data-alt");
+      lightboxTitle.textContent = btn.getAttribute("data-title");
+      lightboxCopy.textContent = btn.getAttribute("data-caption");
+      lightbox.hidden = false;
       lightbox.classList.add("active");
+      closeButton.focus();
     });
   });
-  lightbox.addEventListener("click", function () {
-    lightbox.classList.remove("active");
-    lightboxImg.src = "";
+  closeButton.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", function (event) {
+    if (event.target === lightbox) closeLightbox();
   });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      lightbox.classList.remove("active");
-      lightboxImg.src = "";
-    }
+    if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
   });
 })();
 </script>
 {{- else }}
-<p>No Photos.</p>
+<p>No photos have been added yet.</p>
 {{- end }}
 {{- end }}{{- /* end main */ -}}
