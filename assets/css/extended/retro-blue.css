@@ -2690,7 +2690,7 @@ body.ore-page {
     position: relative;
     display: block;
     overflow: hidden;
-    aspect-ratio: 1200 / 750;
+    aspect-ratio: 2048 / 1200;
     background: var(--bci-deep);
     border: 1px solid color-mix(in srgb, var(--bci-cyan) 18%, transparent);
     border-radius: 0 0 12px 12px;
