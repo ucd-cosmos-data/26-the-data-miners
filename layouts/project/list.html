@@ -1,0 +1,73 @@
+{{- define "main" }}
+{{- $project := .Params.project }}
+<div class="flagship-project-page">
+  <header class="project-page-header">
+    <p class="project-page-header__eyebrow">Research portfolio</p>
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}
+    <p>{{ . }}</p>
+    {{- end }}
+  </header>
+
+  <article class="project-showcase" aria-labelledby="flagship-project-title">
+    <a
+      class="project-showcase__preview"
+      href="{{ $project.url }}"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open {{ $project.title }} in a new tab"
+    >
+      <span class="project-browser-bar" aria-hidden="true">
+        <span class="project-browser-dots">
+          <i></i><i></i><i></i>
+        </span>
+        <span class="project-browser-address">{{ $project.display_url }}</span>
+        <span class="project-browser-live">Live</span>
+      </span>
+      <span class="project-preview-frame">
+        <img
+          src="{{ $project.image | relURL }}"
+          width="1200"
+          height="630"
+          alt="{{ $project.image_alt }}"
+          loading="eager"
+        >
+        <span class="project-preview-action">
+          View the live website <span aria-hidden="true">↗</span>
+        </span>
+      </span>
+    </a>
+
+    <div class="project-showcase__content">
+      <div class="project-status">
+        <span class="project-status__dot" aria-hidden="true"></span>
+        {{ $project.status }}
+      </div>
+      <p class="project-showcase__eyebrow">{{ $project.eyebrow }}</p>
+      <h2 id="flagship-project-title">{{ $project.title }}</h2>
+      <p class="project-showcase__summary">{{ $project.summary }}</p>
+
+      <dl class="project-metrics" aria-label="Project headline results">
+        {{- range $project.metrics }}
+        <div>
+          <dt>{{ .label }}</dt>
+          <dd>{{ .value }}</dd>
+        </div>
+        {{- end }}
+      </dl>
+
+      <div class="project-showcase__actions">
+        <a
+          class="project-visit-button"
+          href="{{ $project.url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit project website <span aria-hidden="true">↗</span>
+        </a>
+        <span>Opens in a new tab</span>
+      </div>
+    </div>
+  </article>
+</div>
+{{- end }}
