@@ -1,49 +1,49 @@
 ---
 title: "California Housing Analysis"
-description: "A K-means clustering study of California real-estate market regions using geography and median house value."
+description: "A K-means analysis of California housing regions using location and median house value."
 ---
 
-*Identifying real-estate market regions using K-means clustering*
+*California housing market regions using K-means clustering*
 
 ## Abstract
 
-In this study, we use K-means clustering to divide California into a small number of interpretable real-estate market regions. We analyze 20,640 census block groups from the California Housing dataset using longitude, latitude, and median house value. After standardizing the three features, we compare candidate solutions with two through eight clusters and select a four-cluster model based on the reduction in within-cluster variation, diagnostic separation, and the need for a useful regional subdivision. The resulting clusters distinguish northern and southern California while also separating relatively high- and low-price markets within each broad geographic area. Mean house values range from approximately $124,204 in the northern lower-price region to $385,886 in the southern higher-price region. K-means provides a transparent exploratory segmentation, although it encourages geographic compactness rather than formally guaranteeing contiguous regions.
+This project uses K-means clustering to group California housing data into four market regions. The analysis includes 20,640 census block groups and uses longitude, latitude, and median house value. The results show a clear north-south split, along with lower- and higher-price groups in each part of the state. Average house values range from about $124,204 to $385,886. These clusters are useful for exploring broad housing patterns, but they should not be treated as official market boundaries.
 
 ## 1. Introduction
 
-Housing markets are shaped by both geography and price. Nearby communities often share access to employment centers, transportation systems, and local amenities, while substantial price differences can still occur within the same broad part of the state. A useful market segmentation should therefore account for spatial location and typical housing value simultaneously.
+Housing prices often depend on location. Nearby communities may have similar access to jobs, transportation, and services, but prices can still vary within the same area. Because of this, it is useful to consider both location and price when grouping housing markets.
 
-Our objective is to divide the California Housing observations into a small number of real-estate market regions that are geographically coherent and similar in median house value. We apply K-means clustering to three variables: longitude, latitude, and median house value. This approach provides a concise, reproducible summary of the dataset without requiring previously defined region labels.
+The goal of this project is to divide the California Housing data into a small number of regions with similar locations and median house values. We use K-means clustering with longitude, latitude, and median house value. Since the data does not include region labels, clustering allows us to find the groups directly from the data.
 
 ## 2. Data
 
-We use the California Housing dataset distributed through scikit-learn. The dataset contains 20,640 observations, each representing a census block group rather than an individual house. For every observation, we retain the following variables:
+We use the California Housing dataset from scikit-learn. It contains 20,640 observations, with each observation representing a census block group rather than one house. We use three variables:
 
 - `Longitude`: geographic longitude of the block group;
 - `Latitude`: geographic latitude of the block group; and
 - `MedHouseVal`: median house value, expressed in units of $100,000.
 
-The resulting input is an $n \times 3$ numerical matrix, where $n=20{,}640$. For observation $i$, the feature vector is
+The input is an $n \times 3$ matrix, where $n=20{,}640$. For observation $i$, the feature vector is
 
 $$
 x_i=(\text{longitude}_i,\text{latitude}_i,\text{median house value}_i).
 $$
 
-This is an unsupervised analysis. Unlike linear regression, no variable is designated as a response to be predicted. Instead, all three variables jointly define similarity among observations.
+This is an unsupervised analysis, so there is no response variable to predict. All three variables are used to decide which observations are similar.
 
 ## 3. Methodology
 
-### 3.1 Purpose and suitability of K-means
+### 3.1 Why K-means is used
 
-K-means is an unsupervised learning method that partitions observations into a prespecified number of groups. It is appropriate for our objective because each block group can be represented as a point with two spatial coordinates and one price coordinate. The method assigns observations with similar standardized feature values to the same cluster, producing a centroid that summarizes the typical location and median house value of each region.
+K-means divides observations into a chosen number of groups. It works well for this project because each block group can be described by two location variables and one price variable. Observations with similar standardized values are placed in the same cluster. Each cluster has a centroid that represents its average location and house value.
 
-The inclusion of longitude and latitude encourages geographically nearby observations to be grouped together. Including median house value simultaneously encourages economically similar observations to share a cluster. Consequently, the resulting groups represent a compromise between geographic proximity and price similarity.
+Longitude and latitude help place nearby observations together, while median house value helps separate lower- and higher-price areas. The final clusters therefore reflect both geography and price.
 
-K-means does not, however, enforce a formal spatial adjacency constraint. It favors compact groups in the selected feature space, but it cannot guarantee that every cluster forms one uninterrupted geographic area. We therefore interpret the results as exploratory market regions rather than official or strictly contiguous boundaries.
+K-means does not require every cluster to form one connected area on a map. For that reason, the clusters are treated as broad market groups rather than official geographic boundaries.
 
 ### 3.2 Standardization
 
-K-means relies on Euclidean distance, which is sensitive to measurement units and numerical scale. Longitude and latitude are measured in degrees, whereas median house value is measured in units of $100,000. If we applied K-means directly to the unscaled variables, a feature with greater numerical variation could have a disproportionate influence on cluster assignment.
+K-means uses Euclidean distance, so variables with larger scales can have too much influence. Longitude and latitude are measured in degrees, while median house value is measured in units of $100,000. We standardize the variables so that they are on comparable scales.
 
 We standardize every feature before fitting the model:
 
@@ -51,33 +51,33 @@ $$
 z_{ij}=\frac{x_{ij}-\bar{x}_j}{s_j},
 $$
 
-where $\bar{x}_j$ and $s_j$ are the sample mean and standard deviation of feature $j$. Standardization gives each selected feature a mean of zero and a standard deviation of one, allowing longitude, latitude, and price to contribute on comparable numerical scales. This remains a modeling choice: one standard deviation does not necessarily have the same practical meaning for every variable.
+where $\bar{x}_j$ is the mean and $s_j$ is the standard deviation of feature $j$. After standardization, each variable has a mean of zero and a standard deviation of one.
 
 ### 3.3 Optimization problem
 
-For a selected number of clusters $K$, K-means partitions the standardized observations into non-overlapping sets $C_1,\ldots,C_K$. Each cluster has a centroid $\mu_k$. The method minimizes the within-cluster sum of squared Euclidean distances:
+For a selected number of clusters $K$, K-means places the standardized observations into groups $C_1,\ldots,C_K$. Each group has a centroid $\mu_k$. The method minimizes the sum of squared distances between observations and their cluster centroid:
 
 $$
 \min_{C_1,\ldots,C_K,\,\mu_1,\ldots,\mu_K}
 \sum_{k=1}^{K}\sum_{i\in C_k}\lVert z_i-\mu_k\rVert_2^2.
 $$
 
-This objective, also called inertia, rewards clusters whose observations are close to their centroids. Because distance is squared, unusually distant observations receive greater weight in the objective.
+This value is called inertia. Lower inertia means observations are closer to their assigned centroids.
 
 ### 3.4 Estimation algorithm
 
 We use Lloyd's algorithm with k-means++ initialization:
 
-1. Select $K$ initial centroids. K-means++ spreads the initial centroids across the feature space to reduce the likelihood of a poor starting configuration.
-2. Assign every observation to the nearest centroid using squared Euclidean distance.
-3. Update each centroid to equal the coordinate-wise mean of all observations assigned to that cluster.
-4. Repeat the assignment and update steps until cluster membership stabilizes, the improvement falls below the convergence tolerance, or the iteration limit is reached.
+1. Select $K$ starting centroids using k-means++.
+2. Assign each observation to its nearest centroid.
+3. Update each centroid using the mean of the observations in that cluster.
+4. Repeat the assignment and update steps until the clusters stop changing.
 
-Each iteration cannot increase the objective function, so the algorithm converges. Nevertheless, it can converge to a local rather than global minimum. We address this sensitivity by fitting 20 initializations and retaining the solution with the smallest inertia. We set `random_state=42` to ensure reproducibility.
+The result can depend on the starting centroids. To reduce this issue, we run the model with 20 different initializations and keep the solution with the lowest inertia. We use `random_state=42` so the results can be reproduced.
 
 ### 3.5 Hyperparameter selection
 
-The primary hyperparameter is the number of clusters, $K$. We compare candidate models for $K=2,\ldots,8$ using inertia and the silhouette coefficient. The silhouette coefficient compares each observation's cohesion within its assigned cluster with its separation from the nearest alternative cluster. Larger values indicate better-separated groups.
+The main choice is the number of clusters, $K$. We compare values from 2 to 8 using inertia and the silhouette coefficient. A higher silhouette score means the clusters are more clearly separated.
 
 | $K$ | Inertia | Silhouette coefficient |
 |---:|---:|---:|
@@ -89,21 +89,21 @@ The primary hyperparameter is the number of clusters, $K$. We compare candidate 
 | 7 | 6,563.2 | 0.410 |
 | 8 | 5,796.4 | 0.395 |
 
-Inertia necessarily decreases as $K$ increases, so we focus on the magnitude of improvement rather than the smallest raw value. The silhouette results favor a coarser two-cluster solution, but the project objective also calls for a useful subdivision into a small number of real-estate regions. We select $K=4$ because it substantially reduces inertia relative to the two- and three-cluster solutions while remaining sufficiently compact for interpretation. This choice balances statistical separation with the substantive goal of distinguishing both geography and price levels.
+Inertia always decreases when more clusters are added, so the smallest value does not automatically give the best model. The silhouette score is highest for two clusters, but that solution mainly gives a broad geographic split. We select $K=4$ because it lowers inertia and gives a more useful separation by both location and price while remaining easy to interpret.
 
 ## 4. Results
 
 ### 4.1 Statewide cluster structure
 
-Figure 1 presents all 20,640 observations in a common coordinate system. Color and marker shape identify cluster membership, and stars indicate cluster centroids. We relabel the arbitrary K-means cluster identifiers in a stable, interpretable order: southern regions first, followed by northern regions, with the lower-price region preceding the higher-price region within each broad geographic area.
+Figure 1 shows all 20,640 observations. Colors and marker shapes identify the clusters, and stars show the cluster centroids. The cluster labels are ordered as southern regions first and northern regions second, with the lower-price group listed before the higher-price group.
 
 ![Figure 1. Statewide overview of all California block groups colored and shaped by K-means region.](figures/california_kmeans_combined.png)
 
-The combined map shows a strong north-south division together with a price-based split inside each broad geographic area. The higher-price clusters concentrate more heavily along coastal markets, whereas the lower-price clusters extend farther inland.
+The map shows a clear north-south split and a price split within each area. Higher-price clusters are more common near the coast, while lower-price clusters extend farther inland.
 
 ### 4.2 Region-specific maps
 
-Because clusters based partly on price can occupy overlapping geographic areas, Figure 2 displays the same assignments in four panels. Each panel highlights one region while retaining the full state as a faint reference layer. This view makes the geographic distribution of every cluster visible without hiding observations behind other colors.
+Figure 2 shows each cluster in a separate panel. The selected region is highlighted, and the rest of the state remains visible in the background. This makes overlapping areas easier to see.
 
 ![Figure 2. Region-specific maps with the selected cluster highlighted and all other observations shown for geographic context.](figures/california_kmeans_regions.png)
 
@@ -116,23 +116,23 @@ Because clusters based partly on price can occupy overlapping geographic areas, 
 | 3 | Northern, lower-price | 5,802 | 1.242 | $124,204 |
 | 4 | Northern, higher-price | 3,032 | 3.310 | $331,013 |
 
-Regions 1 and 2 have similar mean latitudes but markedly different mean house values. Region 2 captures higher-price portions of Southern California, particularly coastal markets, while Region 1 contains a broader lower-price southern market. The northern observations exhibit a comparable division. Region 4 is concentrated near higher-price coastal and Bay Area locations, whereas Region 3 extends across a much larger portion of inland and northern California.
+Regions 1 and 2 are both in Southern California, but their average house values are very different. Region 2 contains more high-price coastal areas, while Region 1 covers a broader lower-price market. The north has a similar pattern. Region 4 includes higher-price coastal and Bay Area locations, while Region 3 covers more inland and northern areas.
 
-The lowest mean value occurs in Region 3 at approximately $124,204, and the highest occurs in Region 2 at approximately $385,886. These results suggest that the clustering captures both large-scale geography and the coastal-versus-inland price contrast.
+Region 3 has the lowest average value at about $124,204. Region 2 has the highest at about $385,886. Overall, the clusters reflect both the north-south difference and the coastal-inland price difference.
 
 ## 5. Discussion and limitations
 
-The four-cluster model provides an interpretable segmentation of a large dataset using only three variables. Standardization ensures that the solution reflects all selected features rather than being dominated by their original units. Repeated k-means++ initialization also reduces sensitivity to an unfavorable starting configuration.
+The four-cluster model gives a simple summary of the dataset using only three variables. Standardization gives each variable a similar role in the distance calculation, and repeated initialization makes the result more stable.
 
-Several limitations should guide interpretation. First, K-means encourages geographic compactness but does not enforce connected regions. A cluster may therefore contain separated pockets with similar standardized locations and prices. Second, K-means favors approximately spherical groups under Euclidean distance, while the geography of California is elongated and housing markets can have irregular shapes. Third, the California Housing target variable is top-coded at the expensive end, which compresses variation among the highest-value observations. Finally, the three-feature model omits factors such as income, housing density, employment access, and local amenities. The identified regions summarize patterns in the selected data; they do not establish causal explanations for house prices.
+The model also has limitations. K-means does not require clusters to be geographically connected, and it works best with compact groups even though California has an irregular shape. The house value variable is capped at the high end, so differences among the most expensive areas are reduced. The model also leaves out factors such as income, housing density, job access, and local amenities. As a result, the clusters describe patterns in the data but do not explain what causes housing prices.
 
-A spatially constrained clustering method would be an appropriate extension if strict geographic contiguity were essential. Alternative approaches could also assess robustness to different feature weights or incorporate additional housing-market variables.
+Future work could use a spatial clustering method that requires connected regions or include more housing-related variables.
 
 ## 6. Conclusion
 
-We used standardized longitude, latitude, and median house value to organize 20,640 California census block groups into four broad real-estate market regions. The resulting segmentation identifies lower- and higher-price markets within both Southern and Northern California. Mean prices differ substantially across the regions, ranging from approximately $124,204 to $385,886.
+We used longitude, latitude, and median house value to group 20,640 California census block groups into four market regions. The results identify lower- and higher-price groups in both Southern and Northern California. Average house values range from about $124,204 to $385,886.
 
-K-means is well suited to this exploratory objective because its purpose, distance measure, and centroid summaries are transparent. The method produces a concise and reproducible statewide overview while revealing the central role of both geography and price. Its principal limitation is that geographic continuity is encouraged but not guaranteed, so the clusters should be viewed as data-driven market segments rather than formal administrative boundaries.
+K-means provides a clear and reproducible way to summarize these patterns. However, the regions are based only on similarity in the selected variables and are not official geographic boundaries.
 
 ## Appendix A. Full reproducible code
 
