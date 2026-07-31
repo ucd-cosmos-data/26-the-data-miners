@@ -44,7 +44,7 @@ title: "Members"
 ### Samarth Gaggar
 <div class="member-block">
 
-  <img src="/26-the-data-miners/members/samarthphoto.jpg"
+  <img src="/26-the-data-miners/members/samarth.jpg"
        alt="Samarth">
 
   <div>
